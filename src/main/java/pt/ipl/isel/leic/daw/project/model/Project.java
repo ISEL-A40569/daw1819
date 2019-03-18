@@ -24,6 +24,15 @@ public class Project extends AuditModel {
     @Column(columnDefinition = "description")
     private String description;
 
+    public Project(Long id, @NotNull String name, @NotNull String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Project() {
+    }
+
     public String getName() {
         return name;
     }
@@ -40,4 +49,7 @@ public class Project extends AuditModel {
         this.description = description;
     }
 
+    public Long getId() {
+        return id;
+    }
 }

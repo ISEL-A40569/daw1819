@@ -2,6 +2,8 @@ package pt.ipl.isel.leic.daw.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +13,7 @@ import pt.ipl.isel.leic.daw.project.repository.ProjectRepository;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 public class ProjectController {
 
     @Autowired
@@ -19,7 +21,12 @@ public class ProjectController {
 
     @GetMapping("/api/project/{id}")
     public Project getProject(@PathVariable long id) {
-        return projectRepository.getOne(id);
+        return projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project does not exist!"));
+    }
+
+    @GetMapping("/api/projects")
+    public Page<Project> getProjects(Pageable pageable) {
+        return projectRepository.findAll(pageable);
     }
 
     @PostMapping("/api/project")

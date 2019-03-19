@@ -1,11 +1,9 @@
 package pt.ipl.isel.leic.daw.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.Project;
@@ -34,7 +32,7 @@ public class ProjectController {
         return  projectRepository.save(project);
     }
 
-    @PatchMapping("/api/project/{id}")
+    @PutMapping("/api/project/{id}")
     public Project patchProject(@PathVariable long id, @Valid @RequestBody Project project) {
         return projectRepository.findById(id)
                 .map(p -> {

@@ -1,0 +1,19 @@
+tid_issueState - estados dos issues
+
+	new
+	open
+	closed
+	archived
+
+tid_issueStateTransition - transições possiveis
+
+	new -> open
+	open -> closed
+	closed -> open
+	closed -> archived
+
+tid_issueLabel - labels
+
+	defect
+	new-functionality
+	exploration

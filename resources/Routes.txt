@@ -1,0 +1,95 @@
+Routes:
+
+Project:
+
+Get a Project by id - GET /api/project/{id} 
+
+Get all Projects - GET /api/project 
+
+Create a Project - POST /api/project 
+							
+Update a Project - PUT /api/project/{id} 
+							
+Remove a Project - DELETE /api/project/{id} 
+
+Get all Issues from a Project - GET /api/project/{id}/issues 
+							
+Get an Issue from a Project - GET /api/project/{projectid}/issue/{issueid}
+
+
+Issue:
+
+Get an Issue by id - GET /api/issue/{issueid} 
+
+Create an Issue - POST /api/issue/ 
+							
+Update an Issue - PUT /api/issue/{id} 
+							
+Remove an Issue - DELETE /api/issue/{id} 
+
+Get all Comments of an issue - GET /api/issue/{id}/comments
+
+Get a Comment of an issue - GET /api/issue/{issueid}/comments/{commentid}
+
+
+Comment:
+
+Create a Comment - POST /api/comment
+
+Get a Comment - GET /api/comment/{commentid}
+
+Update a Comment - PUT /api/comment/{commentid}
+
+Remove a Comment - DELETE /api/comment/{commentid}
+
+
+IssueState:
+
+Get an IssueState - /api/issuestate/{issuestateid}
+
+Get all IssueStates - /api/issuestate
+
+
+IssueStateTransition:
+
+Get an IssueStateTransition - /api/issuestatetransition/{issuestatetransitionid}
+
+Get all IssueStateTransitions - /api/issuestatetransition
+
+
+IssueLabel:
+
+Get an IssueLabel - /api/issuelabel/{issuelabelid}
+
+Get all IssueLabels - /api/issuelabel
+
+
+ProjectIssueState:
+
+Define a project issue state - POST /api/project/issuestate
+
+Get a project issue state - GET /api/project/issuestate
+
+Remove a project issue state - DELETE /api/project/issuestate
+
+
+
+ProjectIssueStateTransition:
+
+Define a project issue state transition - POST /api/project/issuestatestransition
+
+Get a project issue state transition - GET /api/project/issuestatestransition
+
+Remove a project issue state transition - DELETE /api/project/issuestatestransition
+
+
+ProjectIssueLabel:
+
+Define a project issue label - POST /api/project/issuelabel
+
+Get a project issue label- GET /api/project/issuelabel
+
+Remove a project issue label - DELETE /api/project/issuelabel
+
+
+

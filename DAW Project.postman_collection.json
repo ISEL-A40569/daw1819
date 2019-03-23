@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "a37fb4b8-5350-4686-b3da-eb3571073afd",
+		"name": "DAW Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0c0025c-4b2d-452d-a821-34741923da32",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.have.status(201)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"projectId\", jsonObject.id);\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('id')\r",
+							"    pm.expect(jsonObject).to.have.property('name')\r",
+							"    pm.expect(jsonObject).to.have.property('description')\r",
+							"    pm.expect(jsonObject.id).not.to.eql('')\r",
+							"    pm.expect(jsonObject.name).not.to.eql('')\r",
+							"    pm.expect(jsonObject.description).not.to.eql('')\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Project1 name\",\n\t\"description\": \"Project1 description\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00d315c1-00c3-4701-b91f-446ebbdb587a",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.have.status(200)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('id')\r",
+							"    pm.expect(jsonObject).to.have.property('name')\r",
+							"    pm.expect(jsonObject).to.have.property('description')\r",
+							"    pm.expect(jsonObject.id).not.to.eql('')\r",
+							"    pm.expect(jsonObject.name).not.to.eql('')\r",
+							"    pm.expect(jsonObject.description).not.to.eql('')\r",
+							"    pm.expect(jsonObject.id).to.eql(pm.environment.get(\"projectId\"))\r",
+							"    pm.expect(jsonObject.name).to.eql('Project1 name')\r",
+							"    pm.expect(jsonObject.description).to.eql('Project1 description')\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "37824ae5-1567-45ac-937c-6e344d31ad47",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.have.status(200)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('id')\r",
+							"    pm.expect(jsonObject).to.have.property('name')\r",
+							"    pm.expect(jsonObject).to.have.property('description')\r",
+							"    pm.expect(jsonObject.id).not.to.eql('')\r",
+							"    pm.expect(jsonObject.name).not.to.eql('')\r",
+							"    pm.expect(jsonObject.description).not.to.eql('')\r",
+							"    pm.expect(jsonObject.id).to.eql(pm.environment.get(\"projectId\"))\r",
+							"    pm.expect(jsonObject.name).to.eql('Project1 new name')\r",
+							"    pm.expect(jsonObject.description).to.eql('Project1 new description')\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Project1 new name\",\n\t\"description\": \"Project1 new description\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25e43ef1-645f-4d67-9d01-896b677da2f7",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.have.status(200)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('content')\r",
+							"    pm.expect(jsonObject).to.have.property('totalElements')\r",
+							"    pm.expect(jsonObject.totalElements).not.to.eql(0)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Project",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

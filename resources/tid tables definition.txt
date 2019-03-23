@@ -1,15 +1,15 @@
 tid_issueState - estados dos issues
 
 	new
-	open
+	active
 	closed
 	archived
 
 tid_issueStateTransition - transições possiveis
 
-	new -> open
-	open -> closed
-	closed -> open
+	new -> active
+	active -> closed
+	closed -> active
 	closed -> archived
 
 tid_issueLabel - labels

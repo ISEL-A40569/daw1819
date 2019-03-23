@@ -1,0 +1,20 @@
+INSERT INTO public.tid_issuestate(
+	id, statename, description)
+	VALUES (1, 'new', 'new issue'),
+	(2, 'active', 'issue is active'),
+	(3, 'closed', 'closed issue'),
+	(4, 'archived', 'archived issue');
+	
+INSERT INTO public.tid_issuelabel(
+	id, name, description)
+	VALUES (1, 'defect', 'defect'),
+	(2, 'new-functionality', 'add a new functionality to project'),
+	(3, 'exploration', 'exploration');
+	
+INSERT INTO public.tid_issuestatetransition(
+	id, current, next)
+	VALUES 
+	(1, 1, 2),
+	(2, 2, 3),
+	(3, 3, 2),
+	(4, 3, 4);

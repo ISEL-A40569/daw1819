@@ -24,15 +24,6 @@ public class Project {
     @Column(columnDefinition = "description")
     private String description;
 
-    public Project(Long id, @NotNull String name, @NotNull String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public Project() {
-    }
-
     public String getName() {
         return name;
     }

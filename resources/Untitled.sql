@@ -8,8 +8,8 @@ CREATE TABLE "Issue" (
   "id" int PRIMARY KEY,
   "projectId" int,
   "description" varchar,
-  "creationDate" datetime,
-  "closeDate" datetime,
+  "creationDate" timestamp,
+  "closeDate" timestamp,
   "labelId" int,
   "stateId" int,
   "ownerId" int
@@ -52,7 +52,7 @@ CREATE TABLE "Comment" (
   "id" int PRIMARY KEY,
   "issueId" int,
   "user" int,
-  "data" datetime,
+  "data" timestamp,
   "body" varchar
 );
 

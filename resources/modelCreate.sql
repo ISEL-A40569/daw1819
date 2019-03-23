@@ -34,18 +34,21 @@ CREATE TABLE "tid_issueLabel" (
 );
 
 CREATE TABLE "trl_projectIssueState" (
-  "projectId" int PRIMARY KEY,
-  "issueStateId" int PRIMARY KEY
+  "projectId" int,
+  "issueStateId" int,
+  PRIMARY KEY("projectId", "issueStateId")
 );
 
 CREATE TABLE "trl_projectIssueStateTransition" (
-  "projectId" int PRIMARY KEY,
-  "stateTransitionId" int PRIMARY KEY
+  "projectId" int,
+  "stateTransitionId" int,
+  PRIMARY KEY("projectId", "stateTransitionId")
 );
 
 CREATE TABLE "trl_projectIssueLabel" (
-  "projectId" int PRIMARY KEY,
-  "labelId" int PRIMARY KEY
+  "projectId" int,
+  "labelId" int,
+  PRIMARY KEY("projectId", "labelId")
 );
 
 CREATE TABLE "Comment" (

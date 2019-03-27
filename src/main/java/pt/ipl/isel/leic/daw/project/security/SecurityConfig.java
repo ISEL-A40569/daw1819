@@ -10,9 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private BasicAuthenticationPoint basicAuthenticationEntryPoint;
 
+    private final BasicAuthenticationPoint basicAuthenticationEntryPoint;
+
+    public SecurityConfig(BasicAuthenticationPoint basicAuthenticationEntryPoint) {
+        this.basicAuthenticationEntryPoint = basicAuthenticationEntryPoint;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

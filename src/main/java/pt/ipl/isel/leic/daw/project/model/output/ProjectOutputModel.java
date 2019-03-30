@@ -1,14 +1,16 @@
 package pt.ipl.isel.leic.daw.project.model.output;
 
 import com.google.code.siren4j.annotations.Siren4JEntity;
+import com.google.code.siren4j.annotations.Siren4JSubEntity;
 import com.google.code.siren4j.component.Action;
 import com.google.code.siren4j.component.Field;
-import com.google.code.siren4j.component.Link;
 import com.google.code.siren4j.component.builder.ActionBuilder;
 import com.google.code.siren4j.component.builder.FieldBuilder;
-import com.google.code.siren4j.component.builder.LinkBuilder;
 import com.google.code.siren4j.component.impl.ActionImpl;
+import com.google.code.siren4j.meta.FieldType;
 import com.google.code.siren4j.resource.BaseResource;
+import com.google.code.siren4j.resource.CollectionResource;
+import pt.ipl.isel.leic.daw.project.model.Issue;
 import pt.ipl.isel.leic.daw.project.model.Project;
 
 import java.util.ArrayList;
@@ -23,50 +25,67 @@ public class ProjectOutputModel extends BaseResource {
 
     final private String description;
 
+    @Siren4JSubEntity(uri = "/api/project/{parent.id}/issue")
+    private CollectionResource<Issue> issues;
+
     public ProjectOutputModel(Project project) {
         this.id = project.getId();
         this.name = project.getName();
         this.description = project.getDescription();
-
-        Collection<Link> links = new ArrayList<Link>();
-        links.add(LinkBuilder.newInstance().setRelationship("issues").setHref("/api/project/{id}/issue/").build());
-        this.setEntityLinks(links);
+//
+//        Collection<Link> links = new ArrayList<Link>();
+//        links.add(LinkBuilder.newInstance().setRelationship("issues").setHref("/api/project/{id}/issue/").build());
+//        this.setEntityLinks(links);
 
         Collection<Action> actions = new ArrayList<Action>();
 
-        Field id = FieldBuilder.newInstance()
-                .setName("id")
+        Field issueId = FieldBuilder.newInstance()
+                .setName("issueid")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field projectId = FieldBuilder.newInstance()
-                .setName("id")
+                .setName("projectid")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field issueDescription = FieldBuilder.newInstance()
                 .setName("issueDescription")
                 .setRequired(true)
+                .setType(FieldType.TEXT)
                 .build();
 
         Field creationDate = FieldBuilder.newInstance()
                 .setName("creationDate")
                 .setRequired(true)
+                .setType(FieldType.DATETIME)
                 .build();
+
+        Field closeDate = FieldBuilder.newInstance()
+                .setName("closeDate")
+                .setRequired(true)
+                .setType(FieldType.DATETIME)
+                .build();
+
 
         Field labelId = FieldBuilder.newInstance()
                 .setName("labelId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field ownerId = FieldBuilder.newInstance()
-                .setName("creationDate")
+                .setName("ownerId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field stateId = FieldBuilder.newInstance()
-                .setName("creationDate")
+                .setName("stateId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         //Now the action
@@ -74,7 +93,7 @@ public class ProjectOutputModel extends BaseResource {
                 .setMethod(ActionImpl.Method.POST)
                 .setName("AddIssue")
                 .setHref("/api/project/{id}/issue/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .addField(issueDescription)
                 .addField(creationDate)
@@ -87,21 +106,21 @@ public class ProjectOutputModel extends BaseResource {
                 .setMethod(ActionImpl.Method.PUT)
                 .setName("UpdateIssue")
                 .setHref("/api/project/{id}/issue/{issueid}/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .addField(issueDescription)
                 .addField(creationDate)
+                .addField(closeDate)
                 .addField(labelId)
                 .addField(ownerId)
                 .addField(stateId)
                 .build();
 
-
         Action deleteIssueAction = ActionBuilder.newInstance()
                 .setMethod(ActionImpl.Method.DELETE)
                 .setName("DeleteIssue")
                 .setHref("/api/project/{id}/issue/{issueid}/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .build();
 
@@ -123,4 +142,7 @@ public class ProjectOutputModel extends BaseResource {
         return id;
     }
 
+    public CollectionResource<Issue> getIssues() {
+        return issues;
+    }
 }

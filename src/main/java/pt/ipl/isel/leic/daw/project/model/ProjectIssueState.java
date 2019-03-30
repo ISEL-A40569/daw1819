@@ -1,18 +1,20 @@
 package pt.ipl.isel.leic.daw.project.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "trl_projectissuestate")
+@IdClass(ProjectIssueState.ProjectIssueStateIdClass.class)
 public class ProjectIssueState {
 
+    @Id
     @NotNull
     @Column(columnDefinition = "projectid")
     private long projectId;
 
+    @Id
     @NotNull
     @Column(columnDefinition = "stateid")
     private long stateId;
@@ -31,5 +33,10 @@ public class ProjectIssueState {
 
     public void setStateId(long stateId) {
         this.stateId = stateId;
+    }
+
+    class ProjectIssueStateIdClass implements Serializable {
+        private long projectId;
+        private long stateId;
     }
 }

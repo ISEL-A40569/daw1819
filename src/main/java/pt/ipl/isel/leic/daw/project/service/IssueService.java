@@ -17,11 +17,11 @@ public class IssueService {
         this.issueRepository = issueRepository;
     }
 
-    public Issue getProject(long id) {
+    public Issue getIssue(long id) {
         return issueRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Issue does not exits."));
     }
 
-    public List<Issue> getProjects() {
+    public List<Issue> getIssue() {
         return issueRepository.findAll();
     }
 

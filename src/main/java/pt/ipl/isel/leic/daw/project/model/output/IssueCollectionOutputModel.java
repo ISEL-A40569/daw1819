@@ -7,11 +7,11 @@ import pt.ipl.isel.leic.daw.project.model.IssueCollection;
 import java.util.List;
 
 @Siren4JEntity(name = "issueCollection", uri = "/api/project/")
-public class IssueCollectionOutpuModel {
+public class IssueCollectionOutputModel {
 
     private final List<Issue> issues;
 
-    public IssueCollectionOutpuModel(IssueCollection issueCollection) {
+    public IssueCollectionOutputModel(IssueCollection issueCollection) {
         this.issues = issueCollection.getIssues();
     }
 

@@ -2,94 +2,93 @@ Routes:
 
 Project:
 
-Get a Project by id - GET /api/project/{id} 
+Get a Project by projectId - GET /api/project/{projectId} 
 
 Get all Projects - GET /api/project 
 
 Create a Project - POST /api/project 
 							
-Update a Project - PUT /api/project/{id} 
+Update a Project - PUT /api/project/{projectId} 
 							
-Remove a Project - DELETE /api/project/{id} 
+Remove a Project - DELETE /api/project/{projectId} 
 
-Get all Issues from a Project - GET /api/project/{id}/issues 
-							
-Get an Issue from a Project - GET /api/project/{projectid}/issue/{issueid}
 
 
 Issue:
 
-Get an Issue by id - GET /api/issue/{issueid} 
 
-Create an Issue - POST /api/issue/ 
+Get an Issue from a Project by issueId - GET /api/project/{projectId}/issue/{issueId} 
+
+Get all Issues from a Project - GET /api/project/{projectId}/issue
+
+Create an Issue - POST /api/project/{projectId}/issue/ 
 							
-Update an Issue - PUT /api/issue/{id} 
+Update an Issue - PUT /api/project/{projectId}/issue/{id} 
 							
-Remove an Issue - DELETE /api/issue/{id} 
+Remove an Issue - DELETE /api/project/{projectId}/issue/{id} 
 
-Get all Comments of an issue - GET /api/issue/{id}/comments
-
-Get a Comment of an issue - GET /api/issue/{issueid}/comments/{commentid}
 
 
 Comment:
 
-Create a Comment - POST /api/comment
+Get a Comment By commentId - GET /api/project/{projectId}/issue/{issueId}/comment/{commentId}
 
-Get a Comment - GET /api/comment/{commentid}
+Get all Comments - GET /api/project/{projectId}/issue/{issueId}/comment
 
-Update a Comment - PUT /api/comment/{commentid}
+Create a Comment - POST /api/comment/api/project/{projectId}/issue/{issueId}/comment
 
-Remove a Comment - DELETE /api/comment/{commentid}
+Update a Comment - PUT /api/project/{projectId}/issue/{issueId}/comment/{commentId}
+
+Remove a Comment - DELETE /api/project/{projectId}/issue/{issueId}/comment/{commentId}
 
 
 IssueState:
 
-Get an IssueState - /api/issuestate/{issuestateid}
+Get an IssueState - /api/issueState/{issueStateId}
 
-Get all IssueStates - /api/issuestate
+Get all IssueStates - /api/issueState
 
 
 IssueStateTransition:
 
-Get an IssueStateTransition - /api/issuestatetransition/{issuestatetransitionid}
+Get an IssueStateTransition - /api/issueStateTransition/{issueStateTransitionId}
 
-Get all IssueStateTransitions - /api/issuestatetransition
+Get all IssueStateTransitions - /api/issueStateTransition
 
 
 IssueLabel:
 
-Get an IssueLabel - /api/issuelabel/{issuelabelid}
+Get an IssueLabel - /api/issuelabel/{issueLabelId}
 
-Get all IssueLabels - /api/issuelabel
+Get all IssueLabels - /api/issueLabel
 
 
 ProjectIssueState:
 
-Define a project issue state - POST /api/project/issuestate
+Define a project issue state - POST /api/project/issueState
 
-Get a project issue state - GET /api/project/issuestate
+Get a project issue state - GET /api/project/issueState
 
-Remove a project issue state - DELETE /api/project/issuestate
+Remove a project issue state - DELETE /api/project/issueState
 
 
 
 ProjectIssueStateTransition:
 
-Define a project issue state transition - POST /api/project/issuestatestransition
+Define a project issue state transition - POST /api/project/issueStateTransition
 
-Get a project issue state transition - GET /api/project/issuestatestransition
+Get a project issue state transition - GET /api/project/issueStateTransition
 
-Remove a project issue state transition - DELETE /api/project/issuestatestransition
+Remove a project issue state transition - DELETE /api/project/issueStateTransition
 
 
 ProjectIssueLabel:
 
-Define a project issue label - POST /api/project/issuelabel
+Define a project issue label - POST /api/project/issueLabel
 
-Get a project issue label- GET /api/project/issuelabel
+Get a project issue label- GET /api/project/issueLabel
 
-Remove a project issue label - DELETE /api/project/issuelabel
+Remove a project issue label - DELETE /api/project/issueLabel
 
 
 

@@ -3,6 +3,7 @@ package pt.ipl.isel.leic.daw.project.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.Project;
 import pt.ipl.isel.leic.daw.project.repository.ProjectRepository;
 
@@ -16,8 +17,8 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public Optional<Project> getProject(long id) {
-        return projectRepository.findById(id);
+    public Project getProject(long id) {
+        return projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project does not exits."));
     }
 
     public Page<Project> getProjects(Pageable pageable) {

@@ -1,12 +1,16 @@
 package pt.ipl.isel.leic.daw.project.model;
 
+import com.google.code.siren4j.annotations.Siren4JEntity;
+import com.google.code.siren4j.resource.BaseResource;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "project")
-public class Project {
-
+@Siren4JEntity(name = "project", uri = "/api/project/{id}"
+)
+public class Project extends BaseResource {
     @Id
     @GeneratedValue(generator = "project_generator")
     @SequenceGenerator(

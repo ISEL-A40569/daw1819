@@ -3,9 +3,10 @@ package pt.ipl.isel.leic.daw.project.controller;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.Project;
+import pt.ipl.isel.leic.daw.project.model.output.ProjectOutputModel;
 import pt.ipl.isel.leic.daw.project.service.ProjectService;
+import pt.ipl.isel.leic.daw.project.service.SirenConverterService;
 
 import javax.validation.Valid;
 
@@ -14,18 +15,16 @@ import javax.validation.Valid;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final SirenConverterService<ProjectOutputModel> sirenConverterService;
 
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, SirenConverterService<ProjectOutputModel> sirenConverterService) {
         this.projectService = projectService;
+        this.sirenConverterService = sirenConverterService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}", headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> getProject(@PathVariable long id) {
-        return ResponseEntity
-                .ok(
-                projectService
-                .getProject(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Project does not exist!"))); // TODO: build error messages
+        return ResponseEntity.ok( sirenConverterService.convert(new ProjectOutputModel(projectService.getProject(id))) ); // TODO: build error messages
     }
 
     @GetMapping
@@ -41,7 +40,7 @@ public class ProjectController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> patchProject(@PathVariable long id, @Valid @RequestBody Project project) {
+    public ResponseEntity<?> putProject(@PathVariable long id, @Valid @RequestBody Project project) {
         return ResponseEntity.ok(
                 projectService.updateProject(id, project).get());
 

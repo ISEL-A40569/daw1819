@@ -7,6 +7,7 @@ import com.google.code.siren4j.component.Field;
 import com.google.code.siren4j.component.builder.ActionBuilder;
 import com.google.code.siren4j.component.builder.FieldBuilder;
 import com.google.code.siren4j.component.impl.ActionImpl;
+import com.google.code.siren4j.meta.FieldType;
 import com.google.code.siren4j.resource.BaseResource;
 import com.google.code.siren4j.resource.CollectionResource;
 import pt.ipl.isel.leic.daw.project.model.Issue;
@@ -38,39 +39,53 @@ public class ProjectOutputModel extends BaseResource {
 
         Collection<Action> actions = new ArrayList<Action>();
 
-        Field id = FieldBuilder.newInstance()
-                .setName("id")
+        Field issueId = FieldBuilder.newInstance()
+                .setName("issueid")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field projectId = FieldBuilder.newInstance()
-                .setName("id")
+                .setName("projectid")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field issueDescription = FieldBuilder.newInstance()
                 .setName("issueDescription")
                 .setRequired(true)
+                .setType(FieldType.TEXT)
                 .build();
 
         Field creationDate = FieldBuilder.newInstance()
                 .setName("creationDate")
                 .setRequired(true)
+                .setType(FieldType.DATETIME)
                 .build();
+
+        Field closeDate = FieldBuilder.newInstance()
+                .setName("closeDate")
+                .setRequired(true)
+                .setType(FieldType.DATETIME)
+                .build();
+
 
         Field labelId = FieldBuilder.newInstance()
                 .setName("labelId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field ownerId = FieldBuilder.newInstance()
-                .setName("creationDate")
+                .setName("ownerId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         Field stateId = FieldBuilder.newInstance()
-                .setName("creationDate")
+                .setName("stateId")
                 .setRequired(true)
+                .setType(FieldType.NUMBER)
                 .build();
 
         //Now the action
@@ -78,7 +93,7 @@ public class ProjectOutputModel extends BaseResource {
                 .setMethod(ActionImpl.Method.POST)
                 .setName("AddIssue")
                 .setHref("/api/project/{id}/issue/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .addField(issueDescription)
                 .addField(creationDate)
@@ -91,21 +106,21 @@ public class ProjectOutputModel extends BaseResource {
                 .setMethod(ActionImpl.Method.PUT)
                 .setName("UpdateIssue")
                 .setHref("/api/project/{id}/issue/{issueid}/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .addField(issueDescription)
                 .addField(creationDate)
+                .addField(closeDate)
                 .addField(labelId)
                 .addField(ownerId)
                 .addField(stateId)
                 .build();
 
-
         Action deleteIssueAction = ActionBuilder.newInstance()
                 .setMethod(ActionImpl.Method.DELETE)
                 .setName("DeleteIssue")
                 .setHref("/api/project/{id}/issue/{issueid}/")
-                .addField(id)
+                .addField(issueId)
                 .addField(projectId)
                 .build();
 

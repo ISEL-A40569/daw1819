@@ -1,35 +1,35 @@
 CREATE TABLE  Project  (
    id  int PRIMARY KEY,
-   name  varchar,
+   name  varchar UNIQUE ,
    description  varchar
 );
 
 CREATE TABLE  Issue  (
    id  int PRIMARY KEY,
-   projectId  int,
+   projectId  int NOT NULL,
    description  varchar,
-   creationDate  timestamp,
+   creationDate  timestamp NOT NULL,
    closeDate  timestamp,
-   labelId  int,
-   stateId  int,
+   labelId  int NOT NULL,
+   stateId  int NOT NULL,
    ownerId  int
 );
 
 CREATE TABLE  tid_issueState  (
    id  int PRIMARY KEY,
-   stateName  varchar,
+   stateName  varchar NOT NULL,
    description  varchar
 );
 
 CREATE TABLE  tid_issueStateTransition  (
    id  int PRIMARY KEY,
-   current  int,
-   next  int
+   current  int NOT NULL,
+   next  int NOT NULL
 );
 
 CREATE TABLE  tid_issueLabel  (
    id  int PRIMARY KEY,
-   name  varchar,
+   name  varchar NOT NULL,
    description  varchar
 );
 
@@ -53,9 +53,9 @@ CREATE TABLE  trl_projectIssueLabel  (
 
 CREATE TABLE  Comment  (
    id  int PRIMARY KEY,
-   issueId  int,
+   issueId  int NOT NULL,
    _user  int,
-   _date  timestamp,
+   _date  timestamp NOT NULL,
    body  varchar
 );
 

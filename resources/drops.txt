@@ -1,0 +1,9 @@
+DROP TABLE Comment;
+DROP TABLE trl_projectIssueLabel;
+DROP TABLE trl_projectIssueStateTransition;
+DROP TABLE trl_projectIssueState;
+DROP TABLE tid_issueLabel;
+DROP TABLE tid_issueStateTransition;
+DROP TABLE tid_issueState;
+DROP TABLE Issue;
+DROP TABLE Project;

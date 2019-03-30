@@ -1,13 +1,14 @@
 package pt.ipl.isel.leic.daw.project.service;
 
 import org.springframework.stereotype.Service;
+import pt.ipl.isel.leic.daw.project.repository.CommentRepository;
 
 @Service
 public class CommentService {
 
-    final private CommentService commentService;
+    final private CommentRepository commentRepository;
 
-    public CommentService(CommentService commentService) {
-        this.commentService = commentService;
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
     }
 }

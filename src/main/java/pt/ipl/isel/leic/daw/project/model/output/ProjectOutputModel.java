@@ -13,7 +13,7 @@ import pt.ipl.isel.leic.daw.project.model.Project;
 import java.util.ArrayList;
 import java.util.Collection;
 
-    @Siren4JEntity(name = "project", uri = "/project/{id}"
+    @Siren4JEntity(name = "project", uri = "/api/project/{id}"
     )
     public class ProjectOutputModel extends BaseResource {
         final private Long id;
@@ -57,21 +57,8 @@ import java.util.Collection;
             return description;
         }
 
-//        public void setName(String name) {
-//            this.name = name;
-//        }
-//
-//        public void setDescription(String description) {
-//            this.description = description;
-//        }
-
         public Long getId() {
             return id;
         }
-
-//        public void setId(Long id) {
-//            this.id = id;
-//        }
-
 
 }

@@ -38,10 +38,13 @@ public class ProjectController {
                                 new ProjectCollection(projectService.getProjects()))));
     }
 
-    @PostMapping(headers = {"Accept=application/vnd.siren+json"}) //TODO: header com o uri do recurso criado
+    @PostMapping(headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> postProject(@Valid @RequestBody Project project) {
+        ProjectOutputModel projectOutputModel = new ProjectOutputModel(projectService.postProject(project));
+
         return ResponseEntity.status(201)
-                .body(sirenConverterServiceProjectOutputModel.convert(new ProjectOutputModel(projectService.postProject(project))));
+                .header("Location", "/api/project/" + projectOutputModel.getId())
+                .body(sirenConverterServiceProjectOutputModel.convert(projectOutputModel));
     }
 
     @PutMapping(value = "{id}", headers = {"Accept=application/vnd.siren+json"})

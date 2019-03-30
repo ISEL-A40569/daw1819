@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comment")
-@Siren4JEntity(name = "comment", uri = "/api/comment/{id}")
+@Siren4JEntity(name = "comment", uri = "/api/project/{projectId}/issue/{issueId}/comment/{commentId}")
 public class Comment {
     @Id
     @GeneratedValue(generator = "comment_generator")

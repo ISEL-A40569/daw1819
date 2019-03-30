@@ -13,11 +13,9 @@ public class StateTransition {
     @Column(name = "id")
     private int id;
 
-    @Id
     @Column(name = "current")
     private int current;
 
-    @Id
     @Column(name = "next")
     private int next;
 

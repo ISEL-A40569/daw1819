@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "project")
-@Siren4JEntity(name = "project", uri = "/api/project/{id}"
+@Siren4JEntity(name = "project", uri = "/api/project/{projectId}"
 )
 public class Project extends BaseResource {
     @Id
@@ -18,7 +18,9 @@ public class Project extends BaseResource {
             sequenceName = "project_generator",
             initialValue = 1000
     )
-    private Long id;
+
+
+    private Long projectId;
 
     @NotNull
     @Column(columnDefinition = "name")
@@ -45,6 +47,6 @@ public class Project extends BaseResource {
     }
 
     public Long getId() {
-        return id;
+        return this.projectId;
     }
 }

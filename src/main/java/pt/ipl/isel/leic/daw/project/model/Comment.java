@@ -11,13 +11,9 @@ import java.time.LocalDateTime;
 @Siren4JEntity(name = "comment", uri = "/api/project/{projectId}/issue/{issueId}/comment/{commentId}")
 public class Comment {
     @Id
-    @GeneratedValue(generator = "comment_generator")
-    @SequenceGenerator(
-            name = "comment_generator",
-            sequenceName = "comment_generator",
-            initialValue = 1000
-    )
-    private final long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "commentid")
+    private final long commentid;
 
     @NotNull
     @Column(columnDefinition = "issueid")
@@ -36,7 +32,7 @@ public class Comment {
     private String body;
 
     public Comment(long id, long issueId, int userId, LocalDateTime date, String body) {
-        this.id = id;
+        this.commentid = id;
         this.issueId = issueId;
         this.userId = userId;
         this.date = date;
@@ -47,8 +43,8 @@ public class Comment {
         this.body = body;
     }
 
-    public long getId() {
-        return id;
+    public long getCommentid() {
+        return commentid;
     }
 
     public long getIssueId() {

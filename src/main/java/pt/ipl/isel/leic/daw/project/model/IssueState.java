@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 public class IssueState {
 
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "issuestateid")
+    private long issuestateid;
 
     @NotNull
     @Column(name = "statename")
@@ -22,8 +22,8 @@ public class IssueState {
     @Column(name = "description")
     private String stateDescription;
 
-    public long getId() {
-        return id;
+    public long getIssuestateid() {
+        return issuestateid;
     }
 
     public String getStateName() {
@@ -34,8 +34,8 @@ public class IssueState {
         return stateDescription;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIssuestateid(long issuestateid) {
+        this.issuestateid = issuestateid;
     }
 
     public void setStateName(String stateName) {

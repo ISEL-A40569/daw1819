@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 public class IssueLabel {
 
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "issuelabelid")
+    private long issuelabelid;
 
     @NotNull
     @Column(name = "name")
@@ -22,8 +22,8 @@ public class IssueLabel {
     @Column(name = "description")
     private String description;
 
-    public long getId() {
-        return id;
+    public long getIssuelabelid() {
+        return issuelabelid;
     }
 
     public String getName() {
@@ -34,8 +34,8 @@ public class IssueLabel {
         return description;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIssuelabelid(long issuelabelid) {
+        this.issuelabelid = issuelabelid;
     }
 
     public void setName(String name) {

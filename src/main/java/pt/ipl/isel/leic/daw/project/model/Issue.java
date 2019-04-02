@@ -11,13 +11,9 @@ import java.time.LocalDateTime;
 @Siren4JEntity(name = "issue", uri = "/api/project/{projectid}/issue/{issueid}")
 public class Issue {
     @Id
-    @GeneratedValue(generator = "issue_generator")
-    @SequenceGenerator(
-            name = "issue_generator",
-            sequenceName = "issue_generator",
-            initialValue = 1000
-    )
-    private long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "issueid")
+    long issueid;
 
     @NotNull
     @Column(columnDefinition = "projectid")
@@ -45,16 +41,6 @@ public class Issue {
     @NotNull
     @Column(columnDefinition = "ownerid")
     private int ownerid;
-//
-//    public Issue(long id, long projectid, String description, LocalDateTime creationdate, int labelid, int ownerid) {
-//        this.id = id;
-//        this.projectid = projectid;
-//        this.description = description;
-//        this.creationdate = creationdate;
-//        this.labelid = labelid;
-//        this.ownerid = ownerid;
-//        this.stateid = 1;
-//    }
 
     public void setClosedate(LocalDateTime closedate) {
         this.closedate = closedate;
@@ -65,7 +51,7 @@ public class Issue {
     }
 
     public long getId() {
-        return id;
+        return issueid;
     }
 
     public long getProjectid() {

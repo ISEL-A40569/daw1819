@@ -65,30 +65,30 @@ Get all IssueLabels - /api/issueLabel
 
 ProjectIssueState:
 
-Define a project issue state - POST /api/project/issueState
+Define a project issue state - POST /api/project/{projectId}/issueState
 
-Get a project issue state - GET /api/project/issueState
+Get a project issue state - GET /api/project/{projectId}/issueState
 
-Remove a project issue state - DELETE /api/project/issueState
+Remove a project issue state - DELETE /api/project/{projectId}/issueState/{issueStateId}
 
 
 
 ProjectIssueStateTransition:
 
-Define a project issue state transition - POST /api/project/issueStateTransition
+Define a project issue state transition - POST /api/project/{projectId}/issueStateTransition
 
-Get a project issue state transition - GET /api/project/issueStateTransition
+Get a project issue state transition - GET /api/project/{projectId}/issueStateTransition
 
-Remove a project issue state transition - DELETE /api/project/issueStateTransition
+Remove a project issue state transition - DELETE /api/project/{projectId}/issueStateTransition/{issueStateTransitionId}
 
 
 ProjectIssueLabel:
 
-Define a project issue label - POST /api/project/issueLabel
+Define a project issue label - POST /api/project/{projectId}/issueLabel
 
-Get a project issue label- GET /api/project/issueLabel
+Get a project issue label- GET /api/project/{projectId}/issueLabel
 
-Remove a project issue label - DELETE /api/project/issueLabel
+Remove a project issue label - DELETE /api/project/{projectId}/issueLabel/{issueLabelId}
 
 
 

@@ -256,6 +256,21 @@
 		{
 			"name": "Set Project Issue Label",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -263,7 +278,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueLabel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueLabel"
+					]
 				}
 			},
 			"response": []
@@ -278,7 +304,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueState",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueState"
+					]
 				}
 			},
 			"response": []
@@ -286,6 +323,21 @@
 		{
 			"name": "Set Project Issue State Transition",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -293,7 +345,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueStateTransition",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueStateTransition"
+					]
 				}
 			},
 			"response": []

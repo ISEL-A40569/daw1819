@@ -3,12 +3,16 @@ package pt.ipl.isel.leic.daw.project.service;
 import org.springframework.stereotype.Service;
 import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.Project;
+import pt.ipl.isel.leic.daw.project.model.ProjectIssueLabel;
+import pt.ipl.isel.leic.daw.project.model.ProjectIssueState;
+import pt.ipl.isel.leic.daw.project.model.ProjectIssueStateTransition;
 import pt.ipl.isel.leic.daw.project.repository.ProjectIssueLabelRepository;
 import pt.ipl.isel.leic.daw.project.repository.ProjectIssueStateRepository;
 import pt.ipl.isel.leic.daw.project.repository.ProjectIssueStateTransitionRepository;
 import pt.ipl.isel.leic.daw.project.repository.ProjectRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProjectService {
@@ -50,39 +54,51 @@ public class ProjectService {
         projectRepository.delete(project);
     }
 
-    public void setProjectIssueState(long projectId, int issueStateId) {
-        //TODO
+    public ProjectIssueState setProjectIssueState(ProjectIssueState projectIssueState) {
+        return projectIssueStateRepository.save(projectIssueState);
     }
 
-    public void getProjectIssueStates(long projectId) {
-        //TODO
+    public List<ProjectIssueState> getProjectIssueStates(long projectId) {
+        return projectIssueStateRepository
+                .findAll()
+                .stream()
+                .filter( p -> p.getProjectId() == projectId)
+                .collect(Collectors.toList());
     }
 
-    public void removeProjectIssueState(long projectId, int issueStateId) {
-        //TODO
+    public void removeProjectIssueState(ProjectIssueState projectIssueState) {
+        projectIssueStateRepository.delete(projectIssueState);
     }
 
-    public void setProjectIssueLabel(long projectId, int issueLabelId) {
-        //TODO
+    public ProjectIssueLabel setProjectIssueLabel(ProjectIssueLabel projectIssueLabel) {
+        return projectIssueLabelRepository.save(projectIssueLabel);
     }
 
-    public void getProjectIssueLabels(long projectId) {
-        //TODO
+    public List<ProjectIssueLabel> getProjectIssueLabels(long projectId) {
+        return projectIssueLabelRepository
+                .findAll()
+                .stream()
+                .filter(p -> p.getProjectId() == projectId)
+                .collect(Collectors.toList());
     }
 
-    public void removeProjectIssueLabel(long projectId, int issueLabelId) {
-        //TODO
+    public void removeProjectIssueLabel(ProjectIssueLabel projectIssueLabel) {
+        projectIssueLabelRepository.delete(projectIssueLabel);
     }
 
-    public void setProjectIssueStateTransition(long projectId, int issueStateTransitionId) {
-        //TODO
+    public ProjectIssueStateTransition setProjectIssueStateTransition(ProjectIssueStateTransition projectIssueStateTransition) {
+        return projectIssueStateTransitionRepository.save(projectIssueStateTransition);
     }
 
-    public void getProjectIssueStateTransitions(long projectId) {
-        //TODO
+    public List<ProjectIssueStateTransition> getProjectIssueStateTransitions(long projectId) {
+        return projectIssueStateTransitionRepository
+                .findAll()
+                .stream()
+                .filter(p -> p.getProjectId() == projectId)
+                .collect(Collectors.toList());
     }
 
-    public void removeProjectIssueStateTransition(long projectId, int issueStateTransitionId) {
-        //TODO
+    public void removeProjectIssueStateTransition(ProjectIssueStateTransition projectIssueStateTransition) {
+        projectIssueStateTransitionRepository.delete(projectIssueStateTransition);
     }
 }

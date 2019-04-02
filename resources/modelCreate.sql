@@ -1,5 +1,5 @@
 CREATE TABLE  Project  (
-   projectId  int PRIMARY KEY,
+   projectId  int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    name  varchar UNIQUE ,
    description  varchar
 );

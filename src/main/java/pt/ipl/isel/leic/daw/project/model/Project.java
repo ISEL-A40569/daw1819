@@ -12,15 +12,9 @@ import javax.validation.constraints.NotNull;
 )
 public class Project extends BaseResource {
     @Id
-    @GeneratedValue(generator = "project_generator")
-    @SequenceGenerator(
-            name = "project_generator",
-            sequenceName = "project_generator",
-            initialValue = 1000
-    )
-
-
-    private Long projectId;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "projectid")
+    private Long projectid;
 
     @NotNull
     @Column(columnDefinition = "name")
@@ -47,6 +41,6 @@ public class Project extends BaseResource {
     }
 
     public Long getId() {
-        return this.projectId;
+        return this.projectid;
     }
 }

@@ -6,8 +6,6 @@ import pt.ipl.isel.leic.daw.project.model.Issue;
 import pt.ipl.isel.leic.daw.project.model.IssueCollection;
 import pt.ipl.isel.leic.daw.project.model.output.IssueCollectionOutputModel;
 import pt.ipl.isel.leic.daw.project.model.output.IssueOutputModel;
-import pt.ipl.isel.leic.daw.project.model.output.ProjectCollectionOutputModel;
-import pt.ipl.isel.leic.daw.project.model.output.ProjectOutputModel;
 import pt.ipl.isel.leic.daw.project.service.IssueService;
 import pt.ipl.isel.leic.daw.project.service.SirenConverterService;
 
@@ -28,8 +26,8 @@ public class IssueController {
     }
 
     @GetMapping(value = "{issueId}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> getIssue(@PathVariable long id) {
-        return ResponseEntity.ok( sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.getIssue(id))) );
+    public ResponseEntity<?> getIssue(@PathVariable long issueId) {
+        return ResponseEntity.ok( sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.getIssue(issueId))) );
     }
 
     @GetMapping(headers = {"Accept=application/vnd.siren+json"})

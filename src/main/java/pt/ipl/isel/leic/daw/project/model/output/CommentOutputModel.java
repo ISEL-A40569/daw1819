@@ -35,11 +35,18 @@ public class CommentOutputModel extends BaseResource {
 
     private final String body;
 
+    private final long  projectId;
+
+    private final long issueId;
+
     public CommentOutputModel(Comment comment) {
         this.id = comment.getId();
         this.owner = comment.getUserId();
         this.date = comment.getDate();
         this.body = comment.getBody();
+        this.projectId = comment.getProjectId();
+        this.issueId = comment.getIssueId();
+
 
        /* Collection<Link> links = new ArrayList<Link>();
         links.add(LinkBuilder.newInstance()
@@ -149,5 +156,13 @@ public class CommentOutputModel extends BaseResource {
 
     public String getBody() {
         return body;
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public long getIssueId() {
+        return issueId;
     }
 }

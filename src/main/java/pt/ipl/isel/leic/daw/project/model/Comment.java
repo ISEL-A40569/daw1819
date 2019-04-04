@@ -20,7 +20,7 @@ public class Comment {
     private final long id;
 
     @NotNull
-    @Column(columnDefinition = "issueid")
+    @Column(columnDefinition = "issueId")
     private final long issueId;
 
     @NotNull
@@ -34,6 +34,10 @@ public class Comment {
     @NotNull
     @Column(columnDefinition = "body")
     private String body;
+
+    @NotNull
+    @Column(columnDefinition = "projectId")
+    private long projectId;
 
     public Comment(long id, long issueId, int userId, LocalDateTime date, String body) {
         this.id = id;
@@ -65,5 +69,13 @@ public class Comment {
 
     public String getBody() {
         return body;
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 }

@@ -30,13 +30,13 @@ public class IssueOutputModel extends BaseResource {
     public IssueOutputModel(Issue issue){
 
         id = issue.getId();
-        projectId = issue.getProjectId();
+        projectId = issue.getProjectid();
         description = issue.getDescription();
-        creationDate = issue.getCreationDate();
-        closeDate = issue.getCloseDate();
-        labelId = issue.getLabelId();
-        stateId = issue.getStateId();
-        ownerId = issue.getOwnerId();
+        creationDate = issue.getCreationdate();
+        closeDate = issue.getClosedate();
+        labelId = issue.getLabelid();
+        stateId = issue.getStateid();
+        ownerId = issue.getOwnerid();
 
 
         Collection<Link> links = new ArrayList<Link>();

@@ -40,7 +40,7 @@ public class CommentOutputModel extends BaseResource {
     private final long issueId;
 
     public CommentOutputModel(Comment comment) {
-        this.id = comment.getId();
+        this.id = comment.getCommentid();
         this.owner = comment.getUserId();
         this.date = comment.getDate();
         this.body = comment.getBody();

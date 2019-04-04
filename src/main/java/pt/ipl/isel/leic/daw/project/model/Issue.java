@@ -8,91 +8,77 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "issue")
-@Siren4JEntity(name = "issue", uri = "/api/issue/{id}")
+@Siren4JEntity(name = "issue", uri = "/api/project/{projectid}/issue/{issueid}")
 public class Issue {
     @Id
-    @GeneratedValue(generator = "issue_generator")
-    @SequenceGenerator(
-            name = "issue_generator",
-            sequenceName = "issue_generator",
-            initialValue = 1000
-    )
-    private final long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "issueid")
+    long issueid;
 
     @NotNull
-    @Column(columnDefinition = "projectId")
-    private final long projectId;
+    @Column(columnDefinition = "projectid")
+    private long projectid;
 
     @NotNull
     @Column(columnDefinition = "description")
-    private final String description;
+    private String description;
 
     @NotNull
     @Column(columnDefinition = "creationdate")
-    private final LocalDateTime creationDate;
+    private LocalDateTime creationdate;
 
     @Column(columnDefinition = "closedate")
-    private LocalDateTime closeDate;
+    private LocalDateTime closedate;
 
     @NotNull
     @Column(columnDefinition = "labelid")
-    private final int labelId;
+    private int labelid;
 
     @NotNull
     @Column(columnDefinition = "stateid")
-    private int stateId;
+    private int stateid;
 
     @NotNull
     @Column(columnDefinition = "ownerid")
-    private final int ownerId;
+    private int ownerid;
 
-    public Issue(long id, long projectId, String description, LocalDateTime creationDate, int labelId, int ownerId) {
-        this.id = id;
-        this.projectId = projectId;
-        this.description = description;
-        this.creationDate = creationDate;
-        this.labelId = labelId;
-        this.ownerId = ownerId;
-        this.stateId = 1;
+    public void setClosedate(LocalDateTime closedate) {
+        this.closedate = closedate;
     }
 
-    public void setCloseDate(LocalDateTime closeDate) {
-        this.closeDate = closeDate;
-    }
-
-    public void setStateId(int stateId) {
-        this.stateId = stateId;
+    public void setStateid(int stateid) {
+        this.stateid = stateid;
     }
 
     public long getId() {
-        return id;
+        return issueid;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public long getProjectid() {
+        return projectid;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public LocalDateTime getCreationdate() {
+        return creationdate;
     }
 
-    public LocalDateTime getCloseDate() {
-        return closeDate;
+    public LocalDateTime getClosedate() {
+        return closedate;
     }
 
-    public int getLabelId() {
-        return labelId;
+    public int getLabelid() {
+        return labelid;
     }
 
-    public int getStateId() {
-        return stateId;
+    public int getStateid() {
+        return stateid;
     }
 
-    public int getOwnerId() {
-        return ownerId;
+    public int getOwnerid() {
+        return ownerid;
     }
 }

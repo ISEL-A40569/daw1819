@@ -25,7 +25,7 @@ public class ProjectOutputModel extends BaseResource {
 
     final private String description;
 
-    @Siren4JSubEntity(uri = "/api/project/{parent.id}/issue")
+    @Siren4JSubEntity(uri = "/api/project/{parent.id}/issue", embeddedLink = true)
     private CollectionResource<Issue> issues;
 
     public ProjectOutputModel(Project project) {

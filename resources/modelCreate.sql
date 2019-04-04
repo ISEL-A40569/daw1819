@@ -1,11 +1,11 @@
 CREATE TABLE  Project  (
-   projectId  int PRIMARY KEY,
+   projectId  int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    name  varchar UNIQUE ,
    description  varchar
 );
 
 CREATE TABLE  Issue  (
-   issueId  int PRIMARY KEY,
+   issueId  int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    projectId  int NOT NULL,
    description  varchar,
    creationDate  timestamp NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE  trl_projectIssueLabel  (
 );
 
 CREATE TABLE  Comment  (
-   commentId  int PRIMARY KEY,
+   commentId  int PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    issueId  int NOT NULL,
    _user  int,
    _date  timestamp NOT NULL,

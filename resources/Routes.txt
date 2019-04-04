@@ -23,9 +23,9 @@ Get all Issues from a Project - GET /api/project/{projectId}/issue
 
 Create an Issue - POST /api/project/{projectId}/issue/ 
 							
-Update an Issue - PUT /api/project/{projectId}/issue/{id} 
+Update an Issue - PUT /api/project/{projectId}/issue/{issuestateid}
 							
-Remove an Issue - DELETE /api/project/{projectId}/issue/{id} 
+Remove an Issue - DELETE /api/project/{projectId}/issue/{issuestateid}
 
 
 

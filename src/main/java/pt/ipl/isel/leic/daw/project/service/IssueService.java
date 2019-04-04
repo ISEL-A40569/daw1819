@@ -3,7 +3,6 @@ package pt.ipl.isel.leic.daw.project.service;
 import org.springframework.stereotype.Service;
 import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.Issue;
-import pt.ipl.isel.leic.daw.project.model.Project;
 import pt.ipl.isel.leic.daw.project.repository.IssueRepository;
 
 import java.util.List;
@@ -32,8 +31,8 @@ public class IssueService {
     public Issue updateIssue(long id, Issue issue) {
         return issueRepository.findById(id)
                 .map(p -> {
-                    p.setCloseDate(issue.getCloseDate());
-                    p.setStateId(issue.getStateId());
+                    p.setClosedate(issue.getClosedate());
+                    p.setStateid(issue.getStateid());
                     return issueRepository.save(p);
                 }).orElseThrow(() -> new ResourceNotFoundException("Issue does not exits."));
     }

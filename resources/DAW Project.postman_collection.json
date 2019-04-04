@@ -254,6 +254,51 @@
 			"response": []
 		},
 		{
+			"name": "Set Project Issue Label",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Project Issue State",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Project Issue State Transition",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get All Projects",
 			"event": [
 				{
@@ -324,6 +369,175 @@
 			"response": []
 		},
 		{
+			"name": "Create Issue",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"projectid\": \"2451\",\n        \"description\": \"Issue Description\",\n        \"creationdate\": \"2019-03-31T15:00:00\",\n        \"labelid\": \"1\",\n        \"stateid\": \"1\",\n        \"ownerid\": \"12\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/2451/issue/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"2451",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Issue",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Issue Label",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Issue State",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an Issue Comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Issue Comment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Issue Comment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove an Issue Comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Issue",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Remove Project",
 			"request": {
 				"auth": {
@@ -386,7 +600,7 @@
 							"const jsonObject = JSON.parse(responseBody)\r",
 							"\r",
 							"pm.test(\"response has expected properties\", () => {\r",
-							"    pm.expect(jsonObject).to.have.property('id')\r",
+							"    pm.expect(jsonObject).to.have.property('issuestateid')\r",
 							"    pm.expect(jsonObject).to.have.property('stateName')\r",
 							"    pm.expect(jsonObject).to.have.property('stateDescription')\r",
 							"    pm.expect(jsonObject.id).not.to.eql('')\r",
@@ -529,7 +743,7 @@
 							"const jsonObject = JSON.parse(responseBody)\r",
 							"\r",
 							"pm.test(\"response has expected properties\", () => {\r",
-							"    pm.expect(jsonObject).to.have.property('id')\r",
+							"    pm.expect(jsonObject).to.have.property('issuelabelid')\r",
 							"    pm.expect(jsonObject).to.have.property('name')\r",
 							"    pm.expect(jsonObject).to.have.property('description')\r",
 							"    pm.expect(jsonObject.id).not.to.eql('')\r",
@@ -645,6 +859,36 @@
 						"issuelabel",
 						""
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Issue State Transition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Issue State Transitions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []

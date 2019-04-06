@@ -13,19 +13,19 @@ public class Comment {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(columnDefinition = "commentid")
-    private final long commentid;
+    private  long commentid;
 
     @NotNull
     @Column(columnDefinition = "issueId")
-    private final long issueId;
+    private  long issueId;
 
     @NotNull
-    @Column(columnDefinition = "user")
-    private final int userId;
+    @Column(columnDefinition = "_user")
+    private  int _user;
 
     @NotNull
-    @Column(columnDefinition = "date")
-    private final LocalDateTime date;
+    @Column(columnDefinition = "_date")
+    private  LocalDateTime _date;
 
     @NotNull
     @Column(columnDefinition = "body")
@@ -35,13 +35,6 @@ public class Comment {
     @Column(columnDefinition = "projectId")
     private long projectId;
 
-    public Comment(long id, long issueId, int userId, LocalDateTime date, String body) {
-        this.commentid = id;
-        this.issueId = issueId;
-        this.userId = userId;
-        this.date = date;
-        this.body = body;
-    }
 
     public void setBody(String body) {
         this.body = body;
@@ -56,11 +49,11 @@ public class Comment {
     }
 
     public int getUserId() {
-        return userId;
+        return _user;
     }
 
     public LocalDateTime getDate() {
-        return date;
+        return _date;
     }
 
     public String getBody() {

@@ -25,7 +25,7 @@ public class IssueController {
         this.sirenConverterServiceIssueCollectionOutputModel = sirenConverterServiceIssueCollectionOutputModel;
     }
 
-    @GetMapping(value = "{issueid}", headers = {"Accept=application/vnd.siren+json"})
+    @GetMapping(value = "{issueId}", headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> getIssue(@PathVariable long issueId) {
         return ResponseEntity.ok( sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.getIssue(issueId))) );
     }
@@ -48,14 +48,14 @@ public class IssueController {
     }
 
 
-    @PutMapping(value = "{issueid}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> putIssue(@PathVariable long id, @Valid @RequestBody Issue issue) {
+    @PutMapping(value = "{issueId}", headers = {"Accept=application/vnd.siren+json"})
+    public ResponseEntity<?> putIssue(@PathVariable long issueId, @Valid @RequestBody Issue issue) {
         return ResponseEntity.ok(
-                sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.updateIssue(id, issue))));
+                sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.updateIssue(issueId, issue))));
 
     }
 
-    @DeleteMapping("{issueid}")
+    @DeleteMapping("{issueId}")
     public ResponseEntity<?> deleteIssue(@PathVariable long id) {
         issueService.deleteIssue(id);
         return ResponseEntity.ok().build();

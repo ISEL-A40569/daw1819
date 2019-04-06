@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ecb6e889-aafa-46ce-aec9-989472cd3e69",
+		"_postman_id": "b2715a94-982f-46c3-a1fe-3f2e4b442ff7",
 		"name": "DAW Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -546,7 +546,7 @@
 			"response": []
 		},
 		{
-			"name": "Get an Issue By Id",
+			"name": "Get an Issue By IssueId",
 			"event": [
 				{
 					"listen": "test",
@@ -607,6 +607,32 @@
 						"{{projectId}}",
 						"issue",
 						"{{issueId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Issues By ProjectId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issue"
 					]
 				}
 			},
@@ -1228,6 +1254,21 @@
 						"comment",
 						"{{commentId}}"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Issue Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []

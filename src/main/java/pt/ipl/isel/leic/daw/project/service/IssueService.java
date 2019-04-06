@@ -29,12 +29,16 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
-    public Issue updateIssue(long id, Issue issue) {
-        return issueRepository.findById(id)
-                .map(p -> {
-                    p.setClosedate(issue.getClosedate());
-                    p.setStateid(issue.getStateid());
-                    return issueRepository.save(p);
+    public Issue updateIssue(long issueId, Issue issue) {
+        return issueRepository.findById(issueId)
+                .map(newIssue -> {
+                    newIssue.setDescription(issue.getDescription());
+                    newIssue.setLabelid(issue.getLabelid());
+                    newIssue.setOwnerid(issue.getOwnerid());
+                    //newIssue.setProjectid(issue.getProjectid());
+                    newIssue.setClosedate(issue.getClosedate());
+                    newIssue.setStateid(issue.getStateid());
+                    return issueRepository.save(newIssue);
                 }).orElseThrow(() -> new ResourceNotFoundException("Issue does not exits."));
     }
 

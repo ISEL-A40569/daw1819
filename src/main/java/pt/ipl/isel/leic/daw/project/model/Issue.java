@@ -42,6 +42,8 @@ public class Issue {
     @Column(columnDefinition = "ownerid")
     private int ownerid;
 
+
+    //SETTERS
     public void setClosedate(LocalDateTime closedate) {
         this.closedate = closedate;
     }
@@ -50,6 +52,32 @@ public class Issue {
         this.stateid = stateid;
     }
 
+
+    public void setProjectid(long projectid) {
+        this.projectid = projectid;
+    }
+
+    public void setIssueid(long issueid) {
+        this.issueid = issueid;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCreationdate(LocalDateTime creationdate) {
+        this.creationdate = creationdate;
+    }
+
+    public void setLabelid(int labelid) {
+        this.labelid = labelid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
+
+    //GETTERS
     public long getIssueId() {
         return issueid;
     }
@@ -80,9 +108,5 @@ public class Issue {
 
     public int getOwnerid() {
         return ownerid;
-    }
-
-    public void setProjectid(long projectid) {
-        this.projectid = projectid;
     }
 }

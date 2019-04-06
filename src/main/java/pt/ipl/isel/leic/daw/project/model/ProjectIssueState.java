@@ -12,31 +12,31 @@ public class ProjectIssueState {
     @Id
     @NotNull
     @Column(columnDefinition = "projectid")
-    private long projectId;
+    private long projectid;
 
     @Id
     @NotNull
     @Column(columnDefinition = "stateid")
-    private long stateId;
+    private long stateid;
 
-    public long getProjectId() {
-        return projectId;
+    public long getProjectid() {
+        return projectid;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setProjectid(long projectid) {
+        this.projectid = projectid;
     }
 
-    public long getStateId() {
-        return stateId;
+    public long getStateid() {
+        return stateid;
     }
 
-    public void setStateId(long stateId) {
-        this.stateId = stateId;
+    public void setStateid(long stateid) {
+        this.stateid = stateid;
     }
 
-    class ProjectIssueStateIdClass implements Serializable {
-        private long projectId;
-        private long stateId;
+    public static class ProjectIssueStateIdClass implements Serializable {
+        private long projectid;
+        private long stateid;
     }
 }

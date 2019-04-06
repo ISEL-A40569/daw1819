@@ -12,32 +12,33 @@ public class ProjectIssueLabel {
     @Id
     @NotNull
     @Column(columnDefinition = "projectid")
-    private long projectId;
+    private long projectid;
 
     @Id
     @NotNull
     @Column(columnDefinition = "labelid")
-    private long labelId;
+    private long labelid;
 
-    public long getProjectId() {
-        return projectId;
+    public long getProjectid() {
+        return projectid;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setProjectid(long projectid) {
+        this.projectid = projectid;
     }
 
-    public long getLabelId() {
-        return labelId;
+    public long getLabelid() {
+        return labelid;
     }
 
-    public void setLabelId(long labelId) {
-        this.labelId = labelId;
+    public void setLabelid(long labelid) {
+        this.labelid = labelid;
     }
 
-    class ProjectIssueLabelIdClass implements Serializable{
-        private long projectId;
-        private long labelId;
+    public static class ProjectIssueLabelIdClass implements Serializable {
+        private long projectid;
+        private long labelid;
+
     }
 
 }

@@ -11,31 +11,31 @@ public class ProjectIssueStateTransition {
     @Id
     @NotNull
     @Column(columnDefinition = "projectid")
-    private long projectId;
+    private long projectid;
 
     @Id
     @NotNull
     @Column(columnDefinition = "statetransitionid")
-    private long stateTransitionId;
+    private long statetransitionid;
 
-    public long getProjectId() {
-        return projectId;
+    public long getProjectid() {
+        return projectid;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setProjectid(long projectid) {
+        this.projectid = projectid;
     }
 
-    public long getStateTransitionId() {
-        return stateTransitionId;
+    public long getStatetransitionid() {
+        return statetransitionid;
     }
 
-    public void setStateTransitionId(long stateTransitionId) {
-        this.stateTransitionId = stateTransitionId;
+    public void setStatetransitionid(long statetransitionid) {
+        this.statetransitionid = statetransitionid;
     }
 
-    class ProjectIssueStateTransitionIdClass implements Serializable {
-        private long projectId;
-        private long stateTransitionId;
+    public static class ProjectIssueStateTransitionIdClass implements Serializable {
+        private long projectid;
+        private long statetransitionid;
     }
 }

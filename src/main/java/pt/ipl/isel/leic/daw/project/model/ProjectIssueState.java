@@ -16,8 +16,8 @@ public class ProjectIssueState {
 
     @Id
     @NotNull
-    @Column(columnDefinition = "stateid")
-    private long stateid;
+    @Column(columnDefinition = "issuestateid")
+    private long issuestateid;
 
     public long getProjectid() {
         return projectid;
@@ -27,16 +27,16 @@ public class ProjectIssueState {
         this.projectid = projectid;
     }
 
-    public long getStateid() {
-        return stateid;
+    public long getIssuestateid() {
+        return issuestateid;
     }
 
-    public void setStateid(long stateid) {
-        this.stateid = stateid;
+    public void setIssuestateid(long issuestateid) {
+        this.issuestateid = issuestateid;
     }
 
     public static class ProjectIssueStateIdClass implements Serializable {
         private long projectid;
-        private long stateid;
+        private long issuestateid;
     }
 }

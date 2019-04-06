@@ -1,6 +1,7 @@
 package pt.ipl.isel.leic.daw.project.model.output;
 
 import com.google.code.siren4j.annotations.Siren4JEntity;
+import com.google.code.siren4j.annotations.Siren4JProperty;
 import com.google.code.siren4j.component.builder.ActionBuilder;
 import com.google.code.siren4j.component.builder.FieldBuilder;
 import com.google.code.siren4j.component.builder.LinkBuilder;
@@ -18,18 +19,24 @@ import java.util.Collection;
 
 @Siren4JEntity(name = "issue", uri = "/api/project/{projectId}/issue/{issueId}")
 public class IssueOutputModel extends BaseResource {
-
+    @Siren4JProperty
     private final long issueId;
+    @Siren4JProperty
     private final long projectId;
+    @Siren4JProperty
     private final String description;
+    @Siren4JProperty
     private final LocalDateTime creationDate;
+    @Siren4JProperty
     private final LocalDateTime closeDate;
+    @Siren4JProperty
     private final int labelId;
+    @Siren4JProperty
     private final int stateId;
+    @Siren4JProperty
     private final int ownerId;
 
     public IssueOutputModel(Issue issue){
-
         issueId = issue.getIssueId();
         projectId = issue.getProjectid();
         description = issue.getDescription();
@@ -38,7 +45,6 @@ public class IssueOutputModel extends BaseResource {
         labelId = issue.getLabelid();
         stateId = issue.getStateid();
         ownerId = issue.getOwnerid();
-
 
         Collection<Link> links = new ArrayList<Link>();
         links.add(LinkBuilder

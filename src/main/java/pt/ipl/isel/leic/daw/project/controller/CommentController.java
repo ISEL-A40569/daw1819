@@ -26,9 +26,9 @@ public class CommentController {
     }
 
     @GetMapping(value ="{commentId}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> getCommentById(@PathVariable long id){ //são necessarias as variaveis projectId e issueId aqui?
+    public ResponseEntity<?> getCommentById(@PathVariable long commentId){ //são necessarias as variaveis projectId e issueId aqui?
         return ResponseEntity.ok(
-                commentOutputModelSirenConverterService.convert( new CommentOutputModel(commentService.getCommentById(id)))
+                commentOutputModelSirenConverterService.convert( new CommentOutputModel(commentService.getCommentById(commentId)))
         );
     }
 
@@ -41,24 +41,25 @@ public class CommentController {
     }
 
     @PostMapping(headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> postComment(@Valid @RequestBody Comment comment){
+    public ResponseEntity<?> postComment(@PathVariable long projectId, @PathVariable long issueId, @Valid @RequestBody Comment comment){
+        comment.setIssueId(issueId);
         CommentOutputModel commentOutputModel = new CommentOutputModel(commentService.postComment(comment));
 
         return ResponseEntity.status(201)
-                .header("Location", "/api/comment/api/project/"+commentOutputModel.getProjectId()+"/issue/"+commentOutputModel.getIssueId()+"/comment/"+ commentOutputModel.getId())
+                .header("Location", "/api/comment/api/project/"+projectId+"/issue/"+issueId+"/comment/"+ commentOutputModel.getCommentId())
                 .body(commentOutputModelSirenConverterService.convert(commentOutputModel));
     }
 
     @PutMapping(value ="{commentId}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> putComment(@PathVariable long id, @Valid @RequestBody Comment comment){
+    public ResponseEntity<?> putComment(@PathVariable long commentId, @Valid @RequestBody Comment comment){
         return ResponseEntity.ok(
-                commentOutputModelSirenConverterService.convert(new CommentOutputModel(commentService.updateComment(comment, id))));
+                commentOutputModelSirenConverterService.convert(new CommentOutputModel(commentService.updateComment(comment, commentId))));
     }
 
     //Remove a Comment - DELETE /api/project/{projectId}/issue/{issueId}/comment/{commentId}
     @DeleteMapping("{commentId}")
-    public ResponseEntity<?> deleteComment(@PathVariable long id){
-        commentService.deleteComment(id);
+    public ResponseEntity<?> deleteComment(@PathVariable long commentId){
+        commentService.deleteComment(commentId);
         return ResponseEntity.ok().build();
     }
 

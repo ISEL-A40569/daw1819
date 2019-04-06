@@ -36,7 +36,8 @@ public class CommentService {
 
     public List<Comment> getComments(){ return commentRepository.findAll();}
 
-    public Comment postComment(Comment comment) { return commentRepository.save(comment);}
+    public Comment postComment(Comment comment) {
+        return commentRepository.save(comment);}
 
     public Comment updateComment(Comment comment, long id){
         return commentRepository.findById(id)

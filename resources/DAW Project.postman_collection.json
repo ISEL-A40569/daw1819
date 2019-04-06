@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b2715a94-982f-46c3-a1fe-3f2e4b442ff7",
+		"_postman_id": "f9969a5d-d254-4c80-b466-55a0f63e87ad",
 		"name": "DAW Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -684,61 +684,6 @@
 			"response": []
 		},
 		{
-			"name": "Remove Issue",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove Project",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/project/{{projectId}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"project",
-						"{{projectId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get All issueStates",
 			"event": [
 				{
@@ -1056,12 +1001,57 @@
 		},
 		{
 			"name": "Create Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1aa8e11c-e525-4135-9fa9-20d80e48c6d7",
+						"exec": [
+							"//Ok response test",
+							"pm.test(\"response is ok\", () => {",
+							"    pm.response.to.have.status(201)",
+							"    pm.response.to.not.be.error",
+							"    ",
+							"   ",
+							"})",
+							"",
+							"",
+							"const jsonObject = JSON.parse(responseBody)",
+							"pm.environment.set(\"commentId\", jsonObject.properties.commentId);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"_user\": \"1\",\n\t\"_date\": \"2019-04-05T00:00:00\",\n\t\"body\": \"test test test\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/project/{{projectId}}/issue/{{issueId}}/comment/",
@@ -1189,10 +1179,17 @@
 					]
 				},
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"_user\": \"1\",\n\t\"_date\": \"2019-04-05T00:00:00\",\n\t\"body\": \"new comment\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/project/{{projectId}}/issue/{{issueId}}/comment/{{commentId}}",
@@ -1259,9 +1256,9 @@
 			"response": []
 		},
 		{
-			"name": "Update Issue Copy",
+			"name": "Remove Issue",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -1269,6 +1266,46 @@
 				},
 				"url": {
 					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Project",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}"
+					]
 				}
 			},
 			"response": []

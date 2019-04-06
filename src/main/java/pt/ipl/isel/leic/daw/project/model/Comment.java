@@ -16,8 +16,8 @@ public class Comment {
     private  long commentid;
 
     @NotNull
-    @Column(columnDefinition = "issueId")
-    private  long issueId;
+    @Column(columnDefinition = "issueid")
+    private  long issueid;
 
     @NotNull
     @Column(columnDefinition = "_user")
@@ -31,40 +31,80 @@ public class Comment {
     @Column(columnDefinition = "body")
     private String body;
 
-    @NotNull
-    @Column(columnDefinition = "projectId")
-    private long projectId;
-
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public long getCommentid() {
+    public long getCommentId() {
         return commentid;
     }
 
-    public long getIssueId() {
-        return issueId;
+    public void setCommentid(long commentid) {
+        this.commentid = commentid;
     }
 
-    public int getUserId() {
+    public long getIssueId() {
+        return issueid;
+    }
+
+    public void setIssueId(long issueId) {
+        this.issueid = issueId;
+    }
+
+    public int get_user() {
         return _user;
     }
 
-    public LocalDateTime getDate() {
+    public void set_user(int _user) {
+        this._user = _user;
+    }
+
+    public LocalDateTime get_date() {
         return _date;
+    }
+
+    public void set_date(LocalDateTime _date) {
+        this._date = _date;
     }
 
     public String getBody() {
         return body;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
-    }
+    //    @NotNull
+//    @Column(columnDefinition = "projectId")
+//    private long projectId;
+
+
+//    public void setBody(String body) {
+//        this.body = body;
+//    }
+//
+//    public long getCommentid() {
+//        return commentid;
+//    }
+//
+//    public long getIssueId() {
+//        return issueId;
+//    }
+//
+//    public int getUserId() {
+//        return _user;
+//    }
+//
+//    public LocalDateTime getDate() {
+//        return _date;
+//    }
+//
+//    public String getBody() {
+//        return body;
+//    }
+//
+//    public long getProjectId() {
+//        return projectId;
+//    }
+//
+//    public void setProjectId(long projectId) {
+//        this.projectId = projectId;
+//    }
 }

@@ -27,7 +27,7 @@ import java.util.Collection;
 @Siren4JEntity(name="comment", uri="/api/project/{projectId}/issue/{issueId}/comment/{commentId}")
 public class CommentOutputModel extends BaseResource {
 
-    final private Long id;
+    final private Long commentId;
 
     final private long owner;
 
@@ -35,16 +35,16 @@ public class CommentOutputModel extends BaseResource {
 
     private final String body;
 
-    private final long  projectId;
+//    private final long  projectId;
 
     private final long issueId;
 
     public CommentOutputModel(Comment comment) {
-        this.id = comment.getCommentid();
-        this.owner = comment.getUserId();
-        this.date = comment.getDate();
+        this.commentId = comment.getCommentId();
+        this.owner = comment.get_user();
+        this.date = comment.get_date();
         this.body = comment.getBody();
-        this.projectId = comment.getProjectId();
+//        this.projectId = comment.getProjectId();
         this.issueId = comment.getIssueId();
 
 
@@ -142,8 +142,8 @@ public class CommentOutputModel extends BaseResource {
         this.setEntityActions(actions);
     }
 
-    public Long getId() {
-        return id;
+    public Long getCommentId() {
+        return commentId;
     }
 
     public long getOwner(){
@@ -158,9 +158,9 @@ public class CommentOutputModel extends BaseResource {
         return body;
     }
 
-    public long getProjectId() {
-        return projectId;
-    }
+//    public long getProjectId() {
+//        return projectId;
+//    }
 
     public long getIssueId() {
         return issueId;

@@ -61,19 +61,19 @@ public class ProjectController {
 
     @PostMapping("{projectId}/issueState")
     public ResponseEntity<?> postProjectIssueState(@PathVariable long projectId, @Valid @RequestBody ProjectIssueState projectIssueState) {
-        projectIssueState.setProjectId(projectId);
+        projectIssueState.setProjectid(projectId);
         return ResponseEntity.ok(projectService.setProjectIssueState(projectIssueState));
     }
 
     @PostMapping("{projectId}/issueStateTransition")
     public ResponseEntity<?> postProjectIssueStateTransition(@PathVariable long projectId, @Valid @RequestBody ProjectIssueStateTransition projectIssueStateTransition) {
-        projectIssueStateTransition.setProjectId(projectId);
+        projectIssueStateTransition.setProjectid(projectId);
         return ResponseEntity.ok(projectService.setProjectIssueStateTransition(projectIssueStateTransition));
     }
 
-    @PostMapping("{projectId}/issueState")
+    @PostMapping("{projectId}/issueLabel")
     public ResponseEntity<?> postProjectIssueLabel(@PathVariable long projectId, @Valid @RequestBody ProjectIssueLabel projectIssueLabel) {
-        projectIssueLabel.setProjectId(projectId);
+        projectIssueLabel.setProjectid(projectId);
         return ResponseEntity.ok(projectService.setProjectIssueLabel(projectIssueLabel));
     }
 
@@ -87,26 +87,29 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.getProjectIssueStateTransitions(projectId));
     }
 
-    @GetMapping("{projectId}/issueStateLabel")
+    @GetMapping("{projectId}/issueLabel")
     public ResponseEntity<?> getProjectIssueStateLabel(@PathVariable long projectId) {
         return ResponseEntity.ok(projectService.getProjectIssueLabels(projectId));
     }
 
-//    @DeleteMapping("{projectId}/issueState")
-//    public ResponseEntity<?> removeProjectIssueState(@PathVariable long projectId, @Valid @RequestBody ProjectIssueState projectIssueState) {
-//        projectIssueState.setProjectId(projectId);
-//        return ResponseEntity.ok(projectService.removeProjectIssueState(projectIssueState));
-//    }
-//
-//    @DeleteMapping("{projectId}/issueStateTransition")
-//    public ResponseEntity<?> removeProjectIssueStateTransition(@PathVariable long projectId, @Valid @RequestBody ProjectIssueStateTransition projectIssueStateTransition) {
-//        projectIssueStateTransition.setProjectId(projectId);
-//        return ResponseEntity.ok(projectService.removeProjectIssueStateTransition(projectIssueStateTransition));
-//    }
-//
-//    @DeleteMapping("{projectId}/issueState")
-//    public ResponseEntity<?> removeProjectIssueLabel(@PathVariable long projectId, @Valid @RequestBody ProjectIssueLabel projectIssueLabel) {
-//        projectIssueLabel.setProjectId(projectId);
-//        return ResponseEntity.ok(projectService.removeProjectIssueLabel(projectIssueLabel));
-//    }
+    @DeleteMapping("{projectId}/issueState")
+    public ResponseEntity<?> removeProjectIssueState(@PathVariable long projectId, @Valid @RequestBody ProjectIssueState projectIssueState) {
+        projectIssueState.setProjectid(projectId);
+        projectService.removeProjectIssueState(projectIssueState);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("{projectId}/issueStateTransition")
+    public ResponseEntity<?> removeProjectIssueStateTransition(@PathVariable long projectId, @Valid @RequestBody ProjectIssueStateTransition projectIssueStateTransition) {
+        projectIssueStateTransition.setProjectid(projectId);
+        projectService.removeProjectIssueStateTransition(projectIssueStateTransition);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("{projectId}/issueLabel")
+    public ResponseEntity<?> removeProjectIssueLabel(@PathVariable long projectId, @Valid @RequestBody ProjectIssueLabel projectIssueLabel) {
+        projectIssueLabel.setProjectid(projectId);
+        projectService.removeProjectIssueLabel(projectIssueLabel);
+        return ResponseEntity.ok().build();
+    }
 }

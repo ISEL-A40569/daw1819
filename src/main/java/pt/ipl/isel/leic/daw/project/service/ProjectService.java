@@ -62,7 +62,7 @@ public class ProjectService {
         return projectIssueStateRepository
                 .findAll()
                 .stream()
-                .filter( p -> p.getProjectId() == projectId)
+                .filter( p -> p.getProjectid() == projectId)
                 .collect(Collectors.toList());
     }
 
@@ -78,7 +78,7 @@ public class ProjectService {
         return projectIssueLabelRepository
                 .findAll()
                 .stream()
-                .filter(p -> p.getProjectId() == projectId)
+                .filter(p -> p.getProjectid() == projectId)
                 .collect(Collectors.toList());
     }
 
@@ -94,7 +94,7 @@ public class ProjectService {
         return projectIssueStateTransitionRepository
                 .findAll()
                 .stream()
-                .filter(p -> p.getProjectId() == projectId)
+                .filter(p -> p.getProjectid() == projectId)
                 .collect(Collectors.toList());
     }
 

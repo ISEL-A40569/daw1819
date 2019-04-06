@@ -169,6 +169,76 @@
 			"response": []
 		},
 		{
+			"name": "Get All Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25e43ef1-645f-4d67-9d01-896b677da2f7",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.have.status(200)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('content')\r",
+							"    pm.expect(jsonObject).to.have.property('totalElements')\r",
+							"    pm.expect(jsonObject.totalElements).not.to.eql(0)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Update Project",
 			"event": [
 				{
@@ -256,21 +326,6 @@
 		{
 			"name": "Set Project Issue Label",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -278,18 +333,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/project/{{projectId}}/issueLabel",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"project",
-						"{{projectId}}",
-						"issueLabel"
-					]
+					"raw": ""
 				}
 			},
 			"response": []
@@ -304,18 +348,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/project/{{projectId}}/issueState",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"project",
-						"{{projectId}}",
-						"issueState"
-					]
+					"raw": ""
 				}
 			},
 			"response": []
@@ -323,21 +356,6 @@
 		{
 			"name": "Set Project Issue State Transition",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -345,94 +363,42 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/project/{{projectId}}/issueStateTransition",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"project",
-						"{{projectId}}",
-						"issueStateTransition"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Projects",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "25e43ef1-645f-4d67-9d01-896b677da2f7",
-						"exec": [
-							"// OK response test\r",
-							"pm.test(\"response is ok\", () => {\r",
-							"    pm.response.to.be.ok\r",
-							"    pm.response.to.have.status(200)\r",
-							"    pm.response.to.not.be.error\r",
-							"})\r",
-							"\r",
-							"// Response has body test\r",
-							"pm.test(\"response has body\", () => {\r",
-							"    pm.response.to.have.body\r",
-							"})\r",
-							"\r",
-							"const jsonObject = JSON.parse(responseBody)\r",
-							"\r",
-							"pm.test(\"response has expected properties\", () => {\r",
-							"    pm.expect(jsonObject).to.have.property('content')\r",
-							"    pm.expect(jsonObject).to.have.property('totalElements')\r",
-							"    pm.expect(jsonObject.totalElements).not.to.eql(0)\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/project/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"project",
-						""
-					]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "Create Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a752f62-cad7-457a-a135-4bd72c597cce",
+						"exec": [
+							"//Ok response test",
+							"pm.test(\"response is ok\", () => {",
+							"    pm.response.to.have.status(201)",
+							"    pm.response.to.not.be.error",
+							"    ",
+							"   ",
+							"})",
+							"",
+							"",
+							"const jsonObject = JSON.parse(responseBody)",
+							"pm.environment.set(\"issueId\", jsonObject.properties.issueId);",
+							"pm.test(\"response has expected properties\", () => {",
+							"    pm.expect(jsonObject.properties.projectId).to.eql(pm.environment.get(\"projectId\"))",
+							"    pm.expect(jsonObject.properties.description).to.eql('Issue Description')",
+							"    pm.expect(jsonObject.properties.labelId).to.eql(1)",
+							"    pm.expect(jsonObject.properties.stateId).to.eql(1)",
+							"    pm.expect(jsonObject.properties.ownerId).to.eql(12)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -460,10 +426,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"projectid\": \"2451\",\n        \"description\": \"Issue Description\",\n        \"creationdate\": \"2019-03-31T15:00:00\",\n        \"labelid\": \"1\",\n        \"stateid\": \"1\",\n        \"ownerid\": \"12\"\n}"
+					"raw": "{\n        \"description\": \"Issue Description\",\n        \"creationdate\": \"2019-03-31T15:00:00\",\n        \"labelid\": \"1\",\n        \"stateid\": \"1\",\n        \"ownerid\": \"12\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/project/2451/issue/",
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issue/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -472,9 +438,76 @@
 					"path": [
 						"api",
 						"project",
-						"2451",
+						"{{projectId}}",
 						"issue",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an Issue By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6da3cca5-9a96-4ea4-a4e3-d6d2822c2a22",
+						"exec": [
+							"pm.test(\"response is ok\", () => {",
+							"    pm.response.to.have.status(200)",
+							"    pm.response.to.not.be.error",
+							"})",
+							"",
+							"",
+							"const jsonObject = JSON.parse(responseBody)",
+							"pm.test(\"response has expected properties\", () => {",
+							"    pm.expect(jsonObject.properties.issueId).to.eql(pm.environment.get(\"issueId\"))",
+							"    pm.expect(jsonObject.properties.description).to.eql('Issue Description')",
+							"    pm.expect(jsonObject.properties.labelId).to.eql(1)",
+							"    pm.expect(jsonObject.properties.stateId).to.eql(1)",
+							"    pm.expect(jsonObject.properties.ownerId).to.eql(12)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issue/{{issueId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issue",
+						"{{issueId}}"
 					]
 				}
 			},
@@ -575,79 +608,6 @@
 						"api",
 						"project",
 						"{{projectId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get an IssueState",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a893b877-9aa2-4911-ac53-f604eac457aa",
-						"exec": [
-							"// OK response test\r",
-							"pm.test(\"response is ok\", () => {\r",
-							"    pm.response.to.be.ok\r",
-							"    pm.response.to.have.status(200)\r",
-							"    pm.response.to.not.be.error\r",
-							"})\r",
-							"\r",
-							"// Response has body test\r",
-							"pm.test(\"response has body\", () => {\r",
-							"    pm.response.to.have.body\r",
-							"})\r",
-							"\r",
-							"const jsonObject = JSON.parse(responseBody)\r",
-							"\r",
-							"pm.test(\"response has expected properties\", () => {\r",
-							"    pm.expect(jsonObject).to.have.property('issuestateid')\r",
-							"    pm.expect(jsonObject).to.have.property('stateName')\r",
-							"    pm.expect(jsonObject).to.have.property('stateDescription')\r",
-							"    pm.expect(jsonObject.id).not.to.eql('')\r",
-							"    pm.expect(jsonObject.name).not.to.eql('')\r",
-							"    pm.expect(jsonObject.description).not.to.eql('')\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/issuestate/{{issueStateId}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"issuestate",
-						"{{issueStateId}}"
 					]
 				}
 			},
@@ -791,6 +751,79 @@
 						"api",
 						"issuelabel",
 						"{{issueLabelId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an IssueState",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a893b877-9aa2-4911-ac53-f604eac457aa",
+						"exec": [
+							"// OK response test\r",
+							"pm.test(\"response is ok\", () => {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.have.status(200)\r",
+							"    pm.response.to.not.be.error\r",
+							"})\r",
+							"\r",
+							"// Response has body test\r",
+							"pm.test(\"response has body\", () => {\r",
+							"    pm.response.to.have.body\r",
+							"})\r",
+							"\r",
+							"const jsonObject = JSON.parse(responseBody)\r",
+							"\r",
+							"pm.test(\"response has expected properties\", () => {\r",
+							"    pm.expect(jsonObject).to.have.property('issuestateid')\r",
+							"    pm.expect(jsonObject).to.have.property('stateName')\r",
+							"    pm.expect(jsonObject).to.have.property('stateDescription')\r",
+							"    pm.expect(jsonObject.id).not.to.eql('')\r",
+							"    pm.expect(jsonObject.name).not.to.eql('')\r",
+							"    pm.expect(jsonObject.description).not.to.eql('')\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/issuestate/{{issueStateId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"issuestate",
+						"{{issueStateId}}"
 					]
 				}
 			},

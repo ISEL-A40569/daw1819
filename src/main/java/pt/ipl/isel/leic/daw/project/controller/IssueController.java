@@ -12,7 +12,7 @@ import pt.ipl.isel.leic.daw.project.service.SirenConverterService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/project/{projectId}/issue/")
+@RequestMapping("/api/project/{projectid}/issue/")
 public class IssueController {
 
     private final IssueService issueService;
@@ -25,7 +25,7 @@ public class IssueController {
         this.sirenConverterServiceIssueCollectionOutputModel = sirenConverterServiceIssueCollectionOutputModel;
     }
 
-    @GetMapping(value = "{issueId}", headers = {"Accept=application/vnd.siren+json"})
+    @GetMapping(value = "{issueid}", headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> getIssue(@PathVariable long issueId) {
         return ResponseEntity.ok( sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.getIssue(issueId))) );
     }
@@ -39,23 +39,23 @@ public class IssueController {
     }
 
     @PostMapping(headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> postIssue(@Valid @RequestBody Issue issue) {
-        IssueOutputModel issueOutputModel = new IssueOutputModel(issueService.postIssue(issue));
+    public ResponseEntity<?> postIssue(@Valid @RequestBody Issue issue, @PathVariable long projectid) {
+        IssueOutputModel issueOutputModel = new IssueOutputModel(issueService.postIssue(issue, projectid));
 
         return ResponseEntity.status(201)
-                .header("Location", "/api/project/" + issueOutputModel.getProjectId() + "/issue/" + issueOutputModel.getId())
+                .header("Location", "/api/project/" + issueOutputModel.getProjectId() + "/issue/" + issueOutputModel.getissueId())
                 .body(sirenConverterServiceIssueOutputModel.convert(issueOutputModel));
     }
 
 
-    @PutMapping(value = "{id}", headers = {"Accept=application/vnd.siren+json"})
+    @PutMapping(value = "{issueid}", headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> putIssue(@PathVariable long id, @Valid @RequestBody Issue issue) {
         return ResponseEntity.ok(
                 sirenConverterServiceIssueOutputModel.convert(new IssueOutputModel(issueService.updateIssue(id, issue))));
 
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{issueid}")
     public ResponseEntity<?> deleteIssue(@PathVariable long id) {
         issueService.deleteIssue(id);
         return ResponseEntity.ok().build();

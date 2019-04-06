@@ -5,6 +5,7 @@ import com.google.code.siren4j.component.builder.ActionBuilder;
 import com.google.code.siren4j.component.builder.FieldBuilder;
 import com.google.code.siren4j.component.builder.LinkBuilder;
 import com.google.code.siren4j.component.impl.ActionImpl;
+import com.google.code.siren4j.meta.FieldType;
 import com.google.code.siren4j.resource.BaseResource;
 import pt.ipl.isel.leic.daw.project.model.Issue;
 import com.google.code.siren4j.component.Link;
@@ -18,7 +19,7 @@ import java.util.Collection;
 @Siren4JEntity(name = "issue", uri = "/api/project/{projectId}/issue/{issueId}")
 public class IssueOutputModel extends BaseResource {
 
-    private final long id;
+    private final long issueId;
     private final long projectId;
     private final String description;
     private final LocalDateTime creationDate;
@@ -29,7 +30,7 @@ public class IssueOutputModel extends BaseResource {
 
     public IssueOutputModel(Issue issue){
 
-        id = issue.getId();
+        issueId = issue.getIssueId();
         projectId = issue.getProjectid();
         description = issue.getDescription();
         creationDate = issue.getCreationdate();
@@ -43,7 +44,7 @@ public class IssueOutputModel extends BaseResource {
         links.add(LinkBuilder
                 .newInstance()
                 .setRelationship("comment")
-                .setHref("/api/issue/{id}/comment/")
+                .setHref("/api/project/{projectId/issue/{issueId}/comment/")
                 .build());
 
         this.setEntityLinks(links);
@@ -52,26 +53,31 @@ public class IssueOutputModel extends BaseResource {
 
         Field commentId = FieldBuilder.newInstance()
                 .setName("commentId")
+                .setType(FieldType.NUMBER)
                 .setRequired(true)
                 .build();
 
         Field issueId = FieldBuilder.newInstance()
                 .setName("issueId")
+                .setType(FieldType.NUMBER)
                 .setRequired(true)
                 .build();
 
         Field userId = FieldBuilder.newInstance()
                 .setName("userId")
+                .setType(FieldType.NUMBER)
                 .setRequired(true)
                 .build();
 
         Field date = FieldBuilder.newInstance()
                 .setName("date")
+                .setType(FieldType.DATETIMELOCAL)
                 .setRequired(true)
                 .build();
 
         Field body = FieldBuilder.newInstance()
                 .setName("body")
+                .setType(FieldType.TEXT)
                 .setRequired(true)
                 .build();
 
@@ -114,8 +120,8 @@ public class IssueOutputModel extends BaseResource {
 
     }
 
-    public long getId() {
-        return id;
+    public long getissueId() {
+        return issueId;
     }
 
     public long getProjectId() {

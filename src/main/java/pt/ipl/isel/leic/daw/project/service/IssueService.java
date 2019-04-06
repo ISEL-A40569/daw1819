@@ -24,7 +24,8 @@ public class IssueService {
         return issueRepository.findAll();
     }
 
-    public Issue postIssue(Issue issue) {
+    public Issue postIssue(Issue issue, long projectId) {
+        issue.setProjectid(projectId); //uglyShit #AM
         return issueRepository.save(issue);
     }
 

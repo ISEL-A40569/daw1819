@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "issue")
-@Siren4JEntity(name = "issue", uri = "/api/project/{projectid}/issue/{issueid}")
+@Siren4JEntity(name = "issue", uri = "/api/project/{projectId}/issue/{issueId}")
 public class Issue {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,7 +50,7 @@ public class Issue {
         this.stateid = stateid;
     }
 
-    public long getId() {
+    public long getIssueId() {
         return issueid;
     }
 
@@ -80,5 +80,9 @@ public class Issue {
 
     public int getOwnerid() {
         return ownerid;
+    }
+
+    public void setProjectid(long projectid) {
+        this.projectid = projectid;
     }
 }

@@ -1,10 +1,10 @@
-TODO:
+﻿TODO:
 
-- implementar todas as rotas (implica model, controller, repository, POSTMAN TESTS!!!)
-
-- analisar e definir qual a melhor assinatura dos handlers dos controladores ?
-
-- implementar representações de sucesso (Siren) e erro (Problem+JSON) e definir link rels (Input Model e Output Model ?? Args Resolver e Message Converter ??)
-
-- criar serviços para objectos de negócio e usa-los nos controladores
-
+- corrigir os gets de coleçoes (projects, issues, comments)
+- usar entities no siren
+- definir melhor link rels 
+- implementar validaçoes e representações de erro (Problem+JSON) (usar exceções!?)
+- optimizar headers
+- usar URI templates
+- completar relatorio em conformidade
+- paginação!?

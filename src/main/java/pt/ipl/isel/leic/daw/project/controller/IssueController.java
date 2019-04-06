@@ -43,7 +43,7 @@ public class IssueController {
         IssueOutputModel issueOutputModel = new IssueOutputModel(issueService.postIssue(issue, projectid));
 
         return ResponseEntity.status(201)
-                .header("Location", "/api/project/" + issueOutputModel.getProjectId() + "/issue/" + issueOutputModel.getissueId())
+                .header("Location", "/api/project/" + issueOutputModel.getProjectId() + "/issue/" + issueOutputModel.getIssueId())
                 .body(sirenConverterServiceIssueOutputModel.convert(issueOutputModel));
     }
 

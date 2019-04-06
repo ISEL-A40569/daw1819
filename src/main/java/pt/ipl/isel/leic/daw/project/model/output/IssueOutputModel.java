@@ -126,7 +126,7 @@ public class IssueOutputModel extends BaseResource {
 
     }
 
-    public long getissueId() {
+    public long getIssueId() {
         return issueId;
     }
 

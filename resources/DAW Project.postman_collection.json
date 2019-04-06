@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3fcfa222-07ca-4bde-953c-483c3aec3024",
+		"_postman_id": "ecb6e889-aafa-46ce-aec9-989472cd3e69",
 		"name": "DAW Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -326,14 +326,47 @@
 		{
 			"name": "Set Project Issue Label",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"labelid\": \"1\"\n}"
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueLabel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueLabel"
+					]
 				}
 			},
 			"response": []
@@ -341,14 +374,47 @@
 		{
 			"name": "Set Project Issue State",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"issuestateid\": \"1\"\n}"
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueState",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueState"
+					]
 				}
 			},
 			"response": []
@@ -356,14 +422,47 @@
 		{
 			"name": "Set Project Issue State Transition",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"statetransitionid\": \"1\"\n}"
 				},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:8080/api/project/{{projectId}}/issueStateTransition",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"project",
+						"{{projectId}}",
+						"issueStateTransition"
+					]
 				}
 			},
 			"response": []

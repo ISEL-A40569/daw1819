@@ -12,17 +12,17 @@ import pt.ipl.isel.leic.daw.project.service.SirenConverterService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/project/{projectid}/issue/")
+@RequestMapping("/api/project/{projectId}/issue/")
 public class IssueController {
 
     private final IssueService issueService;
     private final SirenConverterService<IssueOutputModel> sirenConverterServiceIssueOutputModel;
-    private final SirenConverterService<IssueCollectionOutputModel> sirenConverterServiceIssueCollectionOutputModel;
+//    private final SirenConverterService<IssueCollectionOutputModel> sirenConverterServiceIssueCollectionOutputModel;
 
     public IssueController(IssueService issueService, SirenConverterService<IssueOutputModel> sirenConverterServiceIssueOutputModel, SirenConverterService<IssueCollectionOutputModel> sirenConverterServiceIssueCollectionOutputModel) {
         this.issueService = issueService;
         this.sirenConverterServiceIssueOutputModel = sirenConverterServiceIssueOutputModel;
-        this.sirenConverterServiceIssueCollectionOutputModel = sirenConverterServiceIssueCollectionOutputModel;
+//        this.sirenConverterServiceIssueCollectionOutputModel = sirenConverterServiceIssueCollectionOutputModel;
     }
 
     @GetMapping(value = "{issueId}", headers = {"Accept=application/vnd.siren+json"})
@@ -31,16 +31,18 @@ public class IssueController {
     }
 
     @GetMapping(headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> getIssues() {
+    public ResponseEntity<?> getIssues(@PathVariable long projectId) {
         return ResponseEntity.ok(
-                sirenConverterServiceIssueCollectionOutputModel.convert(
+//                sirenConverterServiceIssueCollectionOutputModel.convert(
                         new IssueCollectionOutputModel(
-                                new IssueCollection(issueService.getIssue()))));
+                                new IssueCollection(issueService.getProjectIssues(projectId))))
+//        )
+                ;
     }
 
     @PostMapping(headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> postIssue(@Valid @RequestBody Issue issue, @PathVariable long projectid) {
-        IssueOutputModel issueOutputModel = new IssueOutputModel(issueService.postIssue(issue, projectid));
+    public ResponseEntity<?> postIssue(@Valid @RequestBody Issue issue, @PathVariable long projectId) {
+        IssueOutputModel issueOutputModel = new IssueOutputModel(issueService.postIssue(issue, projectId));
 
         return ResponseEntity.status(201)
                 .header("Location", "/api/project/" + issueOutputModel.getProjectId() + "/issue/" + issueOutputModel.getIssueId())
@@ -56,8 +58,8 @@ public class IssueController {
     }
 
     @DeleteMapping("{issueId}")
-    public ResponseEntity<?> deleteIssue(@PathVariable long id) {
-        issueService.deleteIssue(id);
+    public ResponseEntity<?> deleteIssue(@PathVariable long issueId) {
+        issueService.deleteIssue(issueId);
         return ResponseEntity.ok().build();
 
     }

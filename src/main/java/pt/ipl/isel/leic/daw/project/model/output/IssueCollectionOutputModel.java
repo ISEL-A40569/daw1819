@@ -6,7 +6,7 @@ import pt.ipl.isel.leic.daw.project.model.IssueCollection;
 
 import java.util.List;
 
-@Siren4JEntity(name = "issueCollection", uri = "/api/project/")
+@Siren4JEntity(name = "issueCollection", uri = "/api/project/{projectId}/issue")
 public class IssueCollectionOutputModel {
 
     private final List<Issue> issues;

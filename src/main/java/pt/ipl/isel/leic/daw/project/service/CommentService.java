@@ -6,24 +6,10 @@ import pt.ipl.isel.leic.daw.project.model.Comment;
 import pt.ipl.isel.leic.daw.project.repository.CommentRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
-
-    /*
-    Comment:
-
-    Get a Comment By commentId - GET /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-
-    Get all Comments - GET /api/project/{projectId}/issue/{issueId}/comment
-
-    Create a Comment - POST /api/comment/api/project/{projectId}/issue/{issueId}/comment
-
-    Update a Comment - PUT /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-
-    Remove a Comment - DELETE /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-    */
-
     final private CommentRepository commentRepository;
 
     public CommentService(CommentRepository commentRepository) {
@@ -34,7 +20,13 @@ public class CommentService {
         return commentRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Comment doesn't exist."));
     }
 
-    public List<Comment> getComments(){ return commentRepository.findAll();}
+    public List<Comment> getIssueComments(long issueId){
+        return commentRepository
+                .findAll()
+                .stream()
+                .filter(comment -> comment.getIssueId() == issueId)
+                .collect(Collectors.toList());
+    }
 
     public Comment postComment(Comment comment) {
         return commentRepository.save(comment);}

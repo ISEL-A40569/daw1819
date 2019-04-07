@@ -1,6 +1,5 @@
 package pt.ipl.isel.leic.daw.project.controller;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +9,10 @@ import pt.ipl.isel.leic.daw.project.exception.ResourceNotFoundException;
 import pt.ipl.isel.leic.daw.project.model.IssueState;
 import pt.ipl.isel.leic.daw.project.repository.IssueStateRepository;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/issuestate/")
+@RequestMapping("/api/issueState/")
 public class IssueStateController {
 
     private final IssueStateRepository issueStateRepository;
@@ -26,8 +27,8 @@ public class IssueStateController {
     }
 
     @GetMapping
-    public Page<IssueState> getAllIssueStates(Pageable pageable) {
-        return issueStateRepository.findAll(pageable);
+    public List<IssueState> getAllIssueStates(Pageable pageable) {
+        return issueStateRepository.findAll();
     }
 
 }

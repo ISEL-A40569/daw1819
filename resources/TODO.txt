@@ -8,3 +8,4 @@
 - usar URI templates
 - completar relatorio em conformidade
 - paginação!?
+- preencher creation date nos construtores de issue e comment - LocalDateTime.now()

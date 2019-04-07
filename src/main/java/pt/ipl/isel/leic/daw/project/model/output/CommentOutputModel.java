@@ -1,16 +1,7 @@
 package pt.ipl.isel.leic.daw.project.model.output;
 
-/*
-    Comment:
-
-    Get a Comment By commentId - GET /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-
-    Get all Comments - GET /api/project/{projectId}/issue/{issueId}/comment
-
-
-    */
-
 import com.google.code.siren4j.annotations.Siren4JEntity;
+import com.google.code.siren4j.annotations.Siren4JProperty;
 import com.google.code.siren4j.component.Action;
 import com.google.code.siren4j.component.Field;
 import com.google.code.siren4j.component.builder.ActionBuilder;
@@ -26,17 +17,15 @@ import java.util.Collection;
 
 @Siren4JEntity(name="comment", uri="/api/project/{projectId}/issue/{issueId}/comment/{commentId}")
 public class CommentOutputModel extends BaseResource {
-
+    @Siren4JProperty
     final private Long commentId;
-
+    @Siren4JProperty
     final private long owner;
-
+    @Siren4JProperty
     final private LocalDateTime date;
-
+    @Siren4JProperty
     private final String body;
-
-//    private final long  projectId;
-
+    @Siren4JProperty
     private final long issueId;
 
     public CommentOutputModel(Comment comment) {
@@ -44,23 +33,9 @@ public class CommentOutputModel extends BaseResource {
         this.owner = comment.get_user();
         this.date = comment.get_date();
         this.body = comment.getBody();
-//        this.projectId = comment.getProjectId();
         this.issueId = comment.getIssueId();
 
-
-       /* Collection<Link> links = new ArrayList<Link>();
-        links.add(LinkBuilder.newInstance()
-                .setRelationship("comments")
-                .setHref("/api/project/{projectId}/issue/{issueId}/comment/")
-                .build()
-        );
-
-
-        this.setEntityLinks(links);
-        */
-
         Collection<Action> actions = new ArrayList<Action>();
-
 
         Field projectId = FieldBuilder.newInstance()
                 .setName("projectId")
@@ -85,7 +60,6 @@ public class CommentOutputModel extends BaseResource {
                 .setType(FieldType.DATETIMELOCAL)
                 .setRequired(true)
                 .build();
-
 
         Field commentId = FieldBuilder.newInstance()
                 .setName("commentId")
@@ -157,10 +131,6 @@ public class CommentOutputModel extends BaseResource {
     public String getBody() {
         return body;
     }
-
-//    public long getProjectId() {
-//        return projectId;
-//    }
 
     public long getIssueId() {
         return issueId;

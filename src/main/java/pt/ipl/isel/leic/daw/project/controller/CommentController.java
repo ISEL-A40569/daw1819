@@ -17,12 +17,12 @@ public class CommentController {
 
     private final CommentService commentService;
     private final SirenConverterService<CommentOutputModel> commentOutputModelSirenConverterService;
-    private final SirenConverterService<CommentCollectionOutputModel> commentCollectionOutputModelSirenConverterService;
+//    private final SirenConverterService<CommentCollectionOutputModel> commentCollectionOutputModelSirenConverterService;
 
     public CommentController(CommentService commentService, SirenConverterService<CommentOutputModel> commentOutputModelSirenConverterService, SirenConverterService<CommentCollectionOutputModel> commentCollectionOutputModelSirenConverterService) {
         this.commentService = commentService;
         this.commentOutputModelSirenConverterService = commentOutputModelSirenConverterService;
-        this.commentCollectionOutputModelSirenConverterService = commentCollectionOutputModelSirenConverterService;
+//        this.commentCollectionOutputModelSirenConverterService = commentCollectionOutputModelSirenConverterService;
     }
 
     @GetMapping(value ="{commentId}", headers = {"Accept=application/vnd.siren+json"})
@@ -33,11 +33,13 @@ public class CommentController {
     }
 
     @GetMapping(headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> getComments() {
+    public ResponseEntity<?> getComments(@PathVariable long issueId) {
         return ResponseEntity.ok(
-                commentCollectionOutputModelSirenConverterService.convert(
+//                commentCollectionOutputModelSirenConverterService.convert(
                         new CommentCollectionOutputModel(
-                                new CommentCollection(commentService.getComments()))));
+                                new CommentCollection(commentService.getIssueComments(issueId))))
+//        )
+        ;
     }
 
     @PostMapping(headers = {"Accept=application/vnd.siren+json"})
@@ -56,22 +58,10 @@ public class CommentController {
                 commentOutputModelSirenConverterService.convert(new CommentOutputModel(commentService.updateComment(comment, commentId))));
     }
 
-    //Remove a Comment - DELETE /api/project/{projectId}/issue/{issueId}/comment/{commentId}
     @DeleteMapping("{commentId}")
     public ResponseEntity<?> deleteComment(@PathVariable long commentId){
         commentService.deleteComment(commentId);
         return ResponseEntity.ok().build();
     }
-
-    /*
-    Get a Comment By commentId - GET /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-
-    Get all Comments - GET /api/project/{projectId}/issue/{issueId}/comment
-
-    Create a Comment - POST /api/comment/api/project/{projectId}/issue/{issueId}/comment
-
-    Update a Comment - PUT /api/project/{projectId}/issue/{issueId}/comment/{commentId}
-
-    Remove a Comment - DELETE /api/project/{projectId}/issue/{issueId}/comment/{commentId}*/
 
 }

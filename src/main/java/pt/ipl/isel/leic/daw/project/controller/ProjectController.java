@@ -13,31 +13,32 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/project/")
 public class ProjectController {
-
     private final ProjectService projectService;
     private final SirenConverterService<ProjectOutputModel> sirenConverterServiceProjectOutputModel;
-    private final SirenConverterService<ProjectCollectionOutputModel> sirenConverterServiceProjectCollectionOutputModel;
+//    private final SirenConverterService<ProjectCollectionOutputModel> sirenConverterServiceProjectCollectionOutputModel;
 
     public ProjectController(ProjectService projectService, SirenConverterService<ProjectOutputModel> sirenConverterServiceProjectOutputModel, SirenConverterService<ProjectCollectionOutputModel> sirenConverterServiceProjectCollectionOutputModel) {
         this.projectService = projectService;
         this.sirenConverterServiceProjectOutputModel = sirenConverterServiceProjectOutputModel;
-        this.sirenConverterServiceProjectCollectionOutputModel = sirenConverterServiceProjectCollectionOutputModel;
+//        this.sirenConverterServiceProjectCollectionOutputModel = sirenConverterServiceProjectCollectionOutputModel;
     }
 
-    @GetMapping(value = "{id}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> getProject(@PathVariable long id) {
-        return ResponseEntity.ok( sirenConverterServiceProjectOutputModel.convert(new ProjectOutputModel(projectService.getProject(id))) );
+    @GetMapping(value = "{projectId}", headers = {"Accept=application/vnd.siren+json"})
+    public ResponseEntity<?> getProject(@PathVariable long projectId) {
+        return ResponseEntity.ok( sirenConverterServiceProjectOutputModel.convert(new ProjectOutputModel(projectService.getProject(projectId))) );
     }
 
     @GetMapping(headers = {"Accept=application/vnd.siren+json"})
     public ResponseEntity<?> getProjects() {
         return ResponseEntity.ok(
-                sirenConverterServiceProjectCollectionOutputModel.convert(
+//                sirenConverterServiceProjectCollectionOutputModel.convert(
                         new ProjectCollectionOutputModel(
-                                new ProjectCollection(projectService.getProjects()))));
+                                new ProjectCollection(projectService.getProjects())))
+//        )
+                ;
     }
 
-    @PostMapping(headers = {"Accept=application/vnd.siren+json"})
+    @PostMapping(headers = {"Content-Type=application/json", "Accept=application/vnd.siren+json"})
     public ResponseEntity<?> postProject(@Valid @RequestBody Project project) {
         ProjectOutputModel projectOutputModel = new ProjectOutputModel(projectService.postProject(project));
 
@@ -46,35 +47,34 @@ public class ProjectController {
                 .body(sirenConverterServiceProjectOutputModel.convert(projectOutputModel));
     }
 
-    @PutMapping(value = "{id}", headers = {"Accept=application/vnd.siren+json"})
-    public ResponseEntity<?> putProject(@PathVariable long id, @Valid @RequestBody Project project) {
+    @PutMapping(value = "{projectId}", headers = {"Content-Type=application/json", "Accept=application/vnd.siren+json"})
+    public ResponseEntity<?> putProject(@PathVariable long projectId, @Valid @RequestBody Project project) {
         return ResponseEntity.ok(
-                sirenConverterServiceProjectOutputModel.convert(new ProjectOutputModel(projectService.updateProject(id, project))));
-
+                sirenConverterServiceProjectOutputModel.convert(new ProjectOutputModel(projectService.updateProject(projectId, project))));
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> deleteProject(@PathVariable long id) {
-        projectService.deleteProject(id);
+    @DeleteMapping("{projectId}")
+    public ResponseEntity<?> deleteProject(@PathVariable long projectId) {
+        projectService.deleteProject(projectId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("{projectId}/issueState")
     public ResponseEntity<?> postProjectIssueState(@PathVariable long projectId, @Valid @RequestBody ProjectIssueState projectIssueState) {
         projectIssueState.setProjectid(projectId);
-        return ResponseEntity.ok(projectService.setProjectIssueState(projectIssueState));
+        return ResponseEntity.status(201).body(projectService.setProjectIssueState(projectIssueState));
     }
 
     @PostMapping("{projectId}/issueStateTransition")
     public ResponseEntity<?> postProjectIssueStateTransition(@PathVariable long projectId, @Valid @RequestBody ProjectIssueStateTransition projectIssueStateTransition) {
         projectIssueStateTransition.setProjectid(projectId);
-        return ResponseEntity.ok(projectService.setProjectIssueStateTransition(projectIssueStateTransition));
+        return ResponseEntity.status(201).body(projectService.setProjectIssueStateTransition(projectIssueStateTransition));
     }
 
     @PostMapping("{projectId}/issueLabel")
     public ResponseEntity<?> postProjectIssueLabel(@PathVariable long projectId, @Valid @RequestBody ProjectIssueLabel projectIssueLabel) {
         projectIssueLabel.setProjectid(projectId);
-        return ResponseEntity.ok(projectService.setProjectIssueLabel(projectIssueLabel));
+        return ResponseEntity.status(201).body(projectService.setProjectIssueLabel(projectIssueLabel));
     }
 
     @GetMapping("{projectId}/issueState")

@@ -20,12 +20,14 @@ public class ProjectService {
     private final ProjectIssueStateRepository projectIssueStateRepository;
     private final ProjectIssueLabelRepository projectIssueLabelRepository;
     private final ProjectIssueStateTransitionRepository projectIssueStateTransitionRepository;
+    private final IssueService issueService;
 
-    public ProjectService(ProjectRepository projectRepository, ProjectIssueStateRepository projectIssueStateRepository, ProjectIssueLabelRepository projectIssueLabelRepository, ProjectIssueStateTransitionRepository projectIssueStateTransitionRepository) {
+    public ProjectService(ProjectRepository projectRepository, ProjectIssueStateRepository projectIssueStateRepository, ProjectIssueLabelRepository projectIssueLabelRepository, ProjectIssueStateTransitionRepository projectIssueStateTransitionRepository, IssueService issueService) {
         this.projectRepository = projectRepository;
         this.projectIssueStateRepository = projectIssueStateRepository;
         this.projectIssueLabelRepository = projectIssueLabelRepository;
         this.projectIssueStateTransitionRepository = projectIssueStateTransitionRepository;
+        this.issueService = issueService;
     }
 
     public Project getProject(long id) {
@@ -51,7 +53,26 @@ public class ProjectService {
 
     public void deleteProject(long id) {
         Project project = projectRepository.findById(id).get();
+        removeProjectIssueLabel(id);
+        removeProjectIssueState(id);
+        removeProjectIssueStateTransition(id);
+
+        issueService.getProjectIssues(id)
+                .forEach( issue -> issueService.deleteIssue(issue.getIssueId()));
+
         projectRepository.delete(project);
+    }
+
+    private void removeProjectIssueStateTransition(long id) {
+        getProjectIssueStateTransitions(id).forEach(pist -> removeProjectIssueStateTransition(pist));
+    }
+
+    private void removeProjectIssueState(long id) {
+        getProjectIssueStates(id).forEach(pis -> removeProjectIssueState(pis));
+    }
+
+    private void removeProjectIssueLabel(long id) {
+        getProjectIssueLabels(id).forEach(pil -> removeProjectIssueLabel(pil));
     }
 
     public ProjectIssueState setProjectIssueState(ProjectIssueState projectIssueState) {
